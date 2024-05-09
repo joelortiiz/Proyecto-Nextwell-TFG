@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import theme from './../theme';
+// import theme from './../theme';
 
 const ContenedorFiltros = styled.div`
     display: flex;
@@ -41,7 +41,6 @@ const Input = styled.input`
     font-size: 2.5rem; /* 40px */
     text-transform: uppercase;
     border: none;
-    border-bottom: 2px solid ${theme.grisClaro};
     outline: none;
  
     @media(max-width: 60rem){ /* 950px */
