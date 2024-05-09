@@ -2,16 +2,44 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import WebFont from 'webfontloader';
+import Contenedor from './elements/Contenedor';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import IniciarSesion from './components/inicio_sesion';
+import RegistroUsuarios from './components/registro_usuario';
+
+import { Helmet } from 'react-helmet';
+
+WebFont.load({
+  google: {
+    families: ['Work Sans: 400,500,700', 'sans-serif']
+  }
+});
+
+const Index = () => {
+  return (
+    <>
+    <Helmet>
+      <title>NextWell</title>
+    </Helmet>
+    <BrowserRouter>
+      <Contenedor>
+
+        <Routes>
+          <Route path='/iniciar-sesion' element={<IniciarSesion />} />
+          <Route path='/crear-cuenta' element={<RegistroUsuarios />} />
+          <Route path='/' element={<App />} />
+        </Routes>
+
+      </Contenedor>
+
+    </BrowserRouter>
+    </>
+  );
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Index />
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
