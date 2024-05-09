@@ -6,12 +6,15 @@ import { Header, Titulo, ContenedorHeader, ContenedorBotones } from '../elements
 import { ContenedorFiltros, Formulario, Input, InputGrande, ContenedorBoton } from '../elements/Form'
 import Boton from '../elements/Boton'
 import {useNavigate} from 'react-router-dom'
+import Alert from '../elements/Alert';
 
 const Registro_usuarios = () => {
   const navigate = useNavigate()
   const [correo, setCorreo] = useState('')
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('')
+  const [estadoAlerta, changeAlertStatus] = useState(false)
+  const [alert, changeAlert] = useState({})
 
 
   const handleChange = (e) => {
@@ -32,10 +35,17 @@ const Registro_usuarios = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
+    changeAlertStatus(false)
+    changeAlert({})
     const validateEmail = 	/[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
+
     if(!validateEmail.test(correo)){
-      console.log('correo no valido')
+      changeAlertStatus(true)
+     changeAlert({
+      type: 'error',
+      mensaje: "Por favor ingrese un correo electronico valido"
+
+     })
       return
     }
     if(correo === '' || password === '' || password2 === ''){
@@ -112,6 +122,11 @@ const Registro_usuarios = () => {
 
         </ContenedorBoton>
       </Formulario>
+      <Alert
+      type={alert.type}
+      mensaje={alert.mensaje}
+      estadoAlerta={estadoAlerta}
+      />
     </>
   )
 
