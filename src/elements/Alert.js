@@ -53,13 +53,13 @@ const ContenedorAlerta = styled.div`
     }
 `;
 
-const Alert = ({type, mensaje, estadoAlerta, cambiarEstadoAlerta}) => {
+const Alert = ({type, mensaje, statusAlert, changeAlert}) => {
 	useEffect(() => {
 		let tiempo;
 
-		if(estadoAlerta === true){
+		if(statusAlert === true){
 			tiempo = setTimeout(() => {
-				cambiarEstadoAlerta(false);
+				changeAlert(false);
 			}, 4000);
 		}
 
@@ -67,11 +67,11 @@ const Alert = ({type, mensaje, estadoAlerta, cambiarEstadoAlerta}) => {
 		// Lo que hacemos es limpiar el tiempo para que no intente cambiar el estado si el componente no esta en pantalla.
 		// Es importante para poder cambiar de componentes en pantalla sin errores.
 		return(() => clearTimeout(tiempo));
-	}, [estadoAlerta, cambiarEstadoAlerta]);
+	}, [statusAlert, changeAlert]);
 
 	return (
 		<>
-			{estadoAlerta &&
+			{statusAlert &&
 				<ContenedorAlerta type={type}>
 					<p>{mensaje}</p>
 				</ContenedorAlerta>

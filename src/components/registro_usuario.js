@@ -44,16 +44,23 @@ const Registro_usuarios = () => {
      changeAlert({
       type: 'error',
       mensaje: "Por favor ingrese un correo electronico valido"
-
      })
       return
     }
-    if(correo === '' || password === '' || password2 === ''){
-      console.log('todos los campos son obligatorios')
+    if(correo === '' || password === '' || password2 === '')
+      {changeAlertStatus(true)
+      changeAlert({
+       type: 'error',
+       mensaje: "Todos los campos son obligatorios"
+      })
       return
     }
     if(password !== password2){
-      console.log('las contraseñas no son iguales')
+      changeAlertStatus(true)
+      changeAlert({
+       type: 'error',
+       mensaje:"Las contraseñas no son iguales"
+      })
       return
     }
 
@@ -62,18 +69,23 @@ const Registro_usuarios = () => {
       console.log('usuario registrado')
       navigate('/')
     } catch (error) {
+      changeAlertStatus(true)
       let message;
       switch(error.code){
         case 'auth/wrong-password':
 					message = 'La contraseña no es correcta.'
 					break;
-				case 'auth/user-not-found':
-					message = 'No se encontro ninguna cuenta con este correo electrónico.'
+				case 'auth/email-already-in-use':
+					message = 'Este correo electrónico ya está registrado.'
 					break;
 				default:
 					message = 'Hubo un error al intentar crear la cuenta.'
 				break;
       }
+      changeAlert({
+        type: 'error',
+        mensaje: message
+      })
     }
      
     }
@@ -125,7 +137,8 @@ const Registro_usuarios = () => {
       <Alert
       type={alert.type}
       mensaje={alert.mensaje}
-      estadoAlerta={estadoAlerta}
+      statusAlert={estadoAlerta}
+      changeAlert={changeAlertStatus}
       />
     </>
   )
