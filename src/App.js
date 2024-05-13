@@ -1,12 +1,11 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { motion } from "framer-motion"
-import { AuthContext } from './context/AuthContext';
+import { useAtuh } from './context/AuthContext'
 
 const App = () => {
-	const contexto = useContext(AuthContext);
-
-	console.log(contexto)
+	const {usuario} = useAtuh();
+	
 	return (
 		<Contenedor>
 			<Titulo>Bienvenido a NextWell </Titulo>
