@@ -7,8 +7,10 @@ import { ContenedorFiltros, Formulario, Input, InputGrande, ContenedorBoton } fr
 import Boton from '../elements/Boton'
 import {useNavigate} from 'react-router-dom'
 import Alert from '../elements/Alert';
+import { motion } from "framer-motion" 
 
 const Registro_usuarios = () => {
+  
   const navigate = useNavigate()
   const [correo, setCorreo] = useState('')
   const [password, setPassword] = useState('')
@@ -43,7 +45,7 @@ const Registro_usuarios = () => {
       changeAlertStatus(true)
      changeAlert({
       type: 'error',
-      mensaje: "Por favor ingrese un correo electronico valido"
+      message: "Por favor ingrese un correo electronico valido"
      })
       return
     }
@@ -51,7 +53,7 @@ const Registro_usuarios = () => {
       {changeAlertStatus(true)
       changeAlert({
        type: 'error',
-       mensaje: "Todos los campos son obligatorios"
+       message: "Todos los campos son obligatorios"
       })
       return
     }
@@ -59,7 +61,7 @@ const Registro_usuarios = () => {
       changeAlertStatus(true)
       changeAlert({
        type: 'error',
-       mensaje:"Las contraseñas no son iguales"
+       message:"Las contraseñas no son iguales"
       })
       return
     }
@@ -84,7 +86,7 @@ const Registro_usuarios = () => {
       }
       changeAlert({
         type: 'error',
-        mensaje: message
+        message: message
       })
     }
      
@@ -136,7 +138,7 @@ const Registro_usuarios = () => {
       </Formulario>
       <Alert
       type={alert.type}
-      mensaje={alert.mensaje}
+      message={alert.message}
       statusAlert={estadoAlerta}
       changeAlert={changeAlertStatus}
       />

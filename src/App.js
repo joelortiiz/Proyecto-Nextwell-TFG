@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
+import { motion } from "framer-motion"
+import { AuthContext } from './context/AuthContext';
 
 const App = () => {
+	const contexto = useContext(AuthContext);
+
+	console.log(contexto)
 	return (
 		<Contenedor>
 			<Titulo>Bienvenido a NextWell </Titulo>
-		
+			<motion.div
+  whileHover={{ scale: 1.2 }}
+  whileTap={{ scale: 1.1 }}
+  drag="x"
+  dragConstraints={{ left: -100, right: 100 }}
+/>
 		</Contenedor>
 	);
 }

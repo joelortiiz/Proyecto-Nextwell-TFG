@@ -53,7 +53,7 @@ const ContenedorAlerta = styled.div`
     }
 `;
 
-const Alert = ({type, mensaje, statusAlert, changeAlert}) => {
+const Alert = ({type, message, statusAlert, changeAlert}) => {
 	useEffect(() => {
 		let tiempo;
 
@@ -73,7 +73,7 @@ const Alert = ({type, mensaje, statusAlert, changeAlert}) => {
 		<>
 			{statusAlert &&
 				<ContenedorAlerta type={type}>
-					<p>{mensaje}</p>
+					<p>{message}</p>
 				</ContenedorAlerta>
 			}
 		</>
