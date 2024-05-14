@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from "framer-motion"
 import { useAtuh } from './context/AuthContext'
+import Boton from './elements/Boton';
+import { LogOutButton } from './elements/LogOutButton';
 
 const App = () => {
 	const {usuario} = useAtuh();
@@ -9,12 +11,24 @@ const App = () => {
 	return (
 		<Contenedor>
 			<Titulo>Bienvenido a NextWell </Titulo>
-			<motion.div
-  whileHover={{ scale: 1.2 }}
-  whileTap={{ scale: 1.1 }}
-  drag="x"
-  dragConstraints={{ left: -100, right: 100 }}
-/>
+			{usuario ? (
+				<motion.h3
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 2 }}
+				>
+					¡Hola {usuario.email}!
+				</motion.h3>
+			) : (
+				<motion.h3
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 1 }}
+				>
+					No has iniciado sesión
+				</motion.h3>
+			)}
+			<LogOutButton></LogOutButton>
 		</Contenedor>
 	);
 }
