@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import { Helmet } from 'react-helmet'
 import { Header, Titulo, ContenedorHeader } from '../elements/Header'
-import {  Formulario, Input,  ContenedorBoton } from '../elements/Form'
 import Boton from '../elements/Boton'
 import {useNavigate} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import {auth} from '../firebase/firebaseConfig';
 import Alert from '../elements/Alert'
+import './Inicio_sesion.css'
 
 import { motion } from "framer-motion" 
 
@@ -103,15 +103,15 @@ export const Inicio_sesion = () => {
       exit={{ opacity: 0, scale: 0.8 }}
       transition={{ duration: 0.5 }}
       onSubmit={handleSubmit}
-      style={{ width: '300px', margin: '0 auto' }}
+      className='form'
     >
-      <Formulario onSubmit={handleSubmit}>
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.5 }}
       >
         <input
+          className='input'
           type='email'
           name='email'
           placeholder='Correo Electronico'
@@ -125,6 +125,7 @@ export const Inicio_sesion = () => {
         transition={{ delay: 0.6, duration: 0.5 }}
       >
         <input
+        className='input'
           type='password'
           name='password'
           placeholder='contraseña'
@@ -133,12 +134,13 @@ export const Inicio_sesion = () => {
         />
               </motion.div>
 
-        <ContenedorBoton>
-          
-          <Boton as="button" type='submit' primario>Iniciar Sesion</Boton>
+        <motion.div
+        className='container__button'>
+        <Boton as="button" type='submit' primario>Iniciar Sesion</Boton>
 
-        </ContenedorBoton>
-      </Formulario>
+        </motion.div>
+          
+
     </motion.form>
 
       <Alert
