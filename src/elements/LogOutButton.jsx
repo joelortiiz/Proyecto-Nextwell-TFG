@@ -1,6 +1,6 @@
 import React from 'react'
 import Boton from './Boton'
-import { auth } from './../firebase/firebaseConfig'
+import { auth } from '../firebase/firebaseConfig'
 import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 

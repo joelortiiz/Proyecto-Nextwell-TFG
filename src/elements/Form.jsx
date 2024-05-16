@@ -6,14 +6,6 @@ const ContenedorFiltros = styled.div`
     justify-content: space-between;
     margin-bottom: 1.87rem; /* 30px */
  
-    @media(max-width: 60rem){ /* 950px */
-        flex-direction: column;
- 
-        & > * {
-            width: 100%;
-            margin-bottom: 0.62rem; /* 10px */
-        }
-    }
 `;
  
 const Formulario = styled.form`
@@ -32,9 +24,7 @@ const Formulario = styled.form`
         }
     }
  
-    @media(max-width: 60rem){ /* 950px */
-        justify-content: start;
-    }
+    
 `;
  
 const Input = styled.input`

@@ -1,13 +1,12 @@
 import React, {useState} from 'react'
 import { Helmet } from 'react-helmet'
-import {auth} from './../firebase/firebaseConfig';
+import {auth} from '../firebase/firebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
-import { Header, Titulo, ContenedorHeader, ContenedorBotones } from '../elements/Header'
-import { ContenedorFiltros, Formulario, Input, InputGrande, ContenedorBoton } from '../elements/Form'
+import { Header, Titulo, ContenedorHeader } from '../elements/Header'
+import { Formulario, Input, ContenedorBoton } from '../elements/Form'
 import Boton from '../elements/Boton'
 import {useNavigate} from 'react-router-dom'
 import Alert from '../elements/Alert';
-import { motion } from "framer-motion" 
 
 const Registro_usuarios = () => {
   

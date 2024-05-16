@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import styled, {keyframes} from 'styled-components';
-import theme from './../theme';
+import theme from '../theme';
 
 const slideDown = keyframes`
     0% {

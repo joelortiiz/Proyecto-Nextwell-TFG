@@ -5,8 +5,10 @@ import {  Formulario, Input,  ContenedorBoton } from '../elements/Form'
 import Boton from '../elements/Boton'
 import {useNavigate} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import {auth} from './../firebase/firebaseConfig';
+import {auth} from '../firebase/firebaseConfig';
 import Alert from '../elements/Alert'
+
+import { motion } from "framer-motion" 
 
 export const Inicio_sesion = () => {
   const navigate = useNavigate()
@@ -82,39 +84,70 @@ export const Inicio_sesion = () => {
 
       <Header>
         <ContenedorHeader>
-          <Titulo>Iniciar Sesion</Titulo>
+        <motion.h2
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+      >
+        <Titulo>Iniciar Sesion</Titulo>
+      </motion.h2>
           <div>
             <Boton to={"/crear-cuenta"}>Registro Usuario</Boton>
           </div>
 
         </ContenedorHeader>
       </Header>
+      <motion.form
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      transition={{ duration: 0.5 }}
+      onSubmit={handleSubmit}
+      style={{ width: '300px', margin: '0 auto' }}
+    >
       <Formulario onSubmit={handleSubmit}>
-        <Input
+      <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+      >
+        <input
           type='email'
           name='email'
           placeholder='Correo Electronico'
           value={correo}
           onChange={handleOnChange}
         />
-        <Input
+              </motion.div>
+              <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
+      >
+        <input
           type='password'
           name='password'
           placeholder='contraseña'
           value={password}
           onChange={handleOnChange}
         />
+              </motion.div>
+
         <ContenedorBoton>
+          
           <Boton as="button" type='submit' primario>Iniciar Sesion</Boton>
 
         </ContenedorBoton>
       </Formulario>
+    </motion.form>
+
       <Alert
       type={alert.type}
       message={alert.message}
       statusAlert={estadoAlerta}
       changeAlert={changeAlertStatus}
       />
+  
     </>
   )
 }
