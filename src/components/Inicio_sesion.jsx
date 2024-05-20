@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import { Helmet } from 'react-helmet'
-import { Titulo, ContenedorHeader } from '../elements/Header'
+import { Titulo } from '../elements/Header'
 import Boton from '../elements/Boton'
 import {useNavigate} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import {auth} from '../firebase/firebaseConfig';
 import Alert from '../elements/Alert'
 import './Inicio_sesion.css'
-
+import logo from './../assets/images/logos/logo_original.jpeg'
 import { motion } from "framer-motion" 
 
 export const Inicio_sesion = () => {
@@ -76,16 +76,57 @@ export const Inicio_sesion = () => {
     }
      
     }
+
+    const circleVariants = {
+      animate: {
+        pathLength: [0, 1],
+        transition: {
+          duration: 2,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "loop"
+        }
+      }
+    };
+
   return (
     <>
       <Helmet>
         <title>Inicio Sesion</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
       </Helmet>
 
-<div>
+<div className='container'>
     
      <header className='header'>
-        <ContenedorHeader>
+     <motion.svg
+        className="border-svg"
+        viewBox="0 0 100 100"
+      >
+        <motion.circle
+          cx="50"
+          cy="50"
+          r="45"
+          fill="none"
+          stroke="blue"
+          strokeWidth="2"
+          variants={circleVariants}
+          animate="animate"
+        />
+      </motion.svg>
+       <motion.image
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{ duration: 0.5 }}
+       >
+        <img src={logo} alt="" className='logo animated-image' />
+       </motion.image>
+      </header>
+      <main className='main'>
+        <section className='section'>
+        <article className='article'>
         <motion.h2
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -93,15 +134,6 @@ export const Inicio_sesion = () => {
       >
         <Titulo>Iniciar Sesion</Titulo>
       </motion.h2>
-          <div>
-            <Boton to={"/crear-cuenta"}>Registro Usuario</Boton>
-          </div>
-
-        </ContenedorHeader>
-      </header>
-      <main>
-        <section>
-
       <motion.form
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -142,11 +174,70 @@ export const Inicio_sesion = () => {
         <motion.div
         className='container__button'>
         <Boton as="button" type='submit' primario>Iniciar Sesion</Boton>
-
+        </motion.div>
+        <motion.div>
+        <div>
+            <Boton to={"/crear-cuenta"}>Registro Usuario</Boton>
+          </div>
         </motion.div>
           
 
     </motion.form>
+    </article>
+    <article className='article2'>
+        <motion.h2
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+      >
+        <Titulo>Iniciar Sesion</Titulo>
+      </motion.h2>
+      <motion.form
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      transition={{ duration: 0.5 }}
+      onSubmit={handleSubmit}
+      className='form'
+    >
+      <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+      >
+        <input
+          className='input'
+          type='email'
+          name='email'
+          placeholder='Mail'
+          value={correo}
+          onChange={handleOnChange}
+        />
+              </motion.div>
+              <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
+      >
+        <input
+        className='input'
+          type='password'
+          name='password'
+          placeholder='Password'
+          value={password}
+          onChange={handleOnChange}
+        />
+              </motion.div>
+
+        <motion.div
+        className='container__button'>
+        <Boton as="button" type='submit' primario>Iniciar Sesion</Boton>
+        </motion.div>
+       
+
+    </motion.form>
+    </article>
+    
     </section>
 
     </main>

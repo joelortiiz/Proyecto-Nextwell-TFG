@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import WebFont from 'webfontloader';
-import Contenedor from './elements/Contenedor';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import IniciarSesion from './components/Inicio_sesion';
@@ -24,7 +22,6 @@ const Index = () => {
       </Helmet>
       <AuthProvider>
         <BrowserRouter>
-          <Contenedor>
 
             <Routes>
               <Route path='/iniciar-sesion' element={<IniciarSesion />} />
@@ -42,8 +39,6 @@ const Index = () => {
               } /> */}
 
             </Routes>
-
-          </Contenedor>
         </BrowserRouter>
       </AuthProvider>
 
