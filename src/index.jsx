@@ -12,17 +12,15 @@ import { AuthProvider } from './context/AuthContext';
 import { Helmet } from 'react-helmet';
 import { RutaPrivada } from './components/RutaPrivada';
 
-WebFont.load({
-  google: {
-    families: ['Roboto:400,500,700', 'Droid Sans:400,700']
-  }
-});
+
 
 const Index = () => {
   return (
     <>
       <Helmet>
         <title>NextWell</title>
+			  <link rel="icon" href="./assets/images/logos/favicon.png" type="image/png"/>
+		
       </Helmet>
       <AuthProvider>
         <BrowserRouter>

@@ -1,3 +1,15 @@
+.header {
+    width: 100%;
+    padding: 2.5rem; /* 40px */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ 
+    @media(max-width: 60rem){ /* 950px */
+        justify-content: start;
+    }
+    
+}
 .form {
     padding: 0 2.5rem;
     /* 40px */
@@ -11,17 +23,41 @@
     padding: 1rem 0;
     font-family: 'Work Sans', sans-serif;
     margin: 0.5rem 0;
-    transition: text-indent 0.3s ease;
-    text-indent: 20%;
+    transition: all 0.3s ease;
+    text-indent: 10%;
+
 
 }
 .input:focus {
-    text-indent: -100%;
+    animation-name: traslade-indet;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    transition: all ease 0.3s;
+
+
 }
-.input::placeholder {
-    color: rgba(0, 0, 0, 0.35);
+@keyframes traslade-indet {
+    0% {
+        text-indent: 30%;
+    }
+    100% {
+        text-indent: 10%;
+    }
+    
 }
 
+.input::placeholder {
+    text-indent: 30%;
+    color: rgba(0, 0, 0, 0.45);
+    transition: all ease 0.3s;
+ 
+}
+.input:focus::placeholder {
+    text-indent: 10%;
+    color: rgba(0, 0, 0, 0.45);
+    transition: all ease 0.3s;
+
+}
 .container__button {
     display: flex;
     justify-content: center;

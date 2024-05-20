@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Helmet } from 'react-helmet'
-import { Header, Titulo, ContenedorHeader } from '../elements/Header'
+import { Titulo, ContenedorHeader } from '../elements/Header'
 import Boton from '../elements/Boton'
 import {useNavigate} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
@@ -82,7 +82,9 @@ export const Inicio_sesion = () => {
         <title>Inicio Sesion</title>
       </Helmet>
 
-      <Header>
+<div>
+    
+     <header className='header'>
         <ContenedorHeader>
         <motion.h2
         initial={{ y: -50, opacity: 0 }}
@@ -96,7 +98,10 @@ export const Inicio_sesion = () => {
           </div>
 
         </ContenedorHeader>
-      </Header>
+      </header>
+      <main>
+        <section>
+
       <motion.form
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -114,7 +119,7 @@ export const Inicio_sesion = () => {
           className='input'
           type='email'
           name='email'
-          placeholder='Correo Electronico'
+          placeholder='Mail'
           value={correo}
           onChange={handleOnChange}
         />
@@ -128,7 +133,7 @@ export const Inicio_sesion = () => {
         className='input'
           type='password'
           name='password'
-          placeholder='contraseña'
+          placeholder='Password'
           value={password}
           onChange={handleOnChange}
         />
@@ -142,6 +147,11 @@ export const Inicio_sesion = () => {
           
 
     </motion.form>
+    </section>
+
+    </main>
+
+    </div>
 
       <Alert
       type={alert.type}
