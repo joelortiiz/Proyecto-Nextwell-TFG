@@ -9,6 +9,14 @@ import Alert from '../elements/Alert'
 import './Inicio_sesion.css'
 import logo from './../assets/images/logos/logo_original.jpeg'
 import { motion } from "framer-motion" 
+import googlelogo from "./../assets/images/logos/logo_google.png"
+import advantages1 from "./../assets/images/advantages/customer-service-agent.png"
+
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
+
+const provider = new GoogleAuthProvider();
+
 
 export const Inicio_sesion = () => {
   const navigate = useNavigate()
@@ -17,7 +25,29 @@ export const Inicio_sesion = () => {
   const [estadoAlerta, changeAlertStatus] = useState(false)
   const [alert, changeAlert] = useState({})
 
+  const loginWithGoogle = () => {
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+    navigate('/')
 
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+  }
   const handleOnChange = (e) => {
     if(e.target.name === 'email'){
       setCorreo(e.target.value)
@@ -77,63 +107,38 @@ export const Inicio_sesion = () => {
      
     }
 
-    const circleVariants = {
-      animate: {
-        pathLength: [0, 1],
-        transition: {
-          duration: 2,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatType: "loop"
-        }
-      }
-    };
+
 
   return (
     <>
       <Helmet>
-        <title>Inicio Sesion</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+        <title>Nextwell - Inicio Sesion</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
       </Helmet>
 
 <div className='container'>
     
      <header className='header'>
-     <motion.svg
-        className="border-svg"
-        viewBox="0 0 100 100"
-      >
-        <motion.circle
-          cx="50"
-          cy="50"
-          r="45"
-          fill="none"
-          stroke="blue"
-          strokeWidth="2"
-          variants={circleVariants}
-          animate="animate"
-        />
-      </motion.svg>
-       <motion.image
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.8 }}
-        transition={{ duration: 0.5 }}
-       >
-        <img src={logo} alt="" className='logo animated-image' />
-       </motion.image>
+    
+     <div className='card'> 
+     <img src={logo} alt="" className='logo animated-image' />
+
+     </div>
       </header>
       <main className='main'>
         <section className='section'>
         <article className='article'>
         <motion.h2
+        className='form__title'
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <Titulo>Iniciar Sesion</Titulo>
+        Iniciar Sesion
       </motion.h2>
+      <motion.div>
+        
+      </motion.div>
       <motion.form
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -151,10 +156,11 @@ export const Inicio_sesion = () => {
           className='input'
           type='email'
           name='email'
-          placeholder='Mail'
+          placeholder='Email'
           value={correo}
           onChange={handleOnChange}
         />
+        
               </motion.div>
               <motion.div
         initial={{ x: -100, opacity: 0 }}
@@ -176,6 +182,9 @@ export const Inicio_sesion = () => {
         <Boton as="button" type='submit' primario>Iniciar Sesion</Boton>
         </motion.div>
         <motion.div>
+        
+        </motion.div>
+        <motion.div>
         <div>
             <Boton to={"/crear-cuenta"}>Registro Usuario</Boton>
           </div>
@@ -183,59 +192,15 @@ export const Inicio_sesion = () => {
           
 
     </motion.form>
+    <div onClick={loginWithGoogle}>
+    <img src={googlelogo} alt="" />
+
+
+    </div>
     </article>
     <article className='article2'>
-        <motion.h2
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-      >
-        <Titulo>Iniciar Sesion</Titulo>
-      </motion.h2>
-      <motion.form
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.8 }}
-      transition={{ duration: 0.5 }}
-      onSubmit={handleSubmit}
-      className='form'
-    >
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
-      >
-        <input
-          className='input'
-          type='email'
-          name='email'
-          placeholder='Mail'
-          value={correo}
-          onChange={handleOnChange}
-        />
-              </motion.div>
-              <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.5 }}
-      >
-        <input
-        className='input'
-          type='password'
-          name='password'
-          placeholder='Password'
-          value={password}
-          onChange={handleOnChange}
-        />
-              </motion.div>
 
-        <motion.div
-        className='container__button'>
-        <Boton as="button" type='submit' primario>Iniciar Sesion</Boton>
-        </motion.div>
-       
-
-    </motion.form>
+       <img src={advantages1} className='' alt="" />
     </article>
     
     </section>

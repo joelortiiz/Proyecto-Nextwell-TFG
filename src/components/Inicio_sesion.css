@@ -1,6 +1,6 @@
 body {
     background-color: #0F0B0C;
-    color: white;
+    color: red;
     overflow: hidden;
     
 }
@@ -28,13 +28,18 @@ body {
     @media(max-width: 60rem){
         max-height: none;
     }
+    
 }
 .logo {
     margin-top: 1rem;
     width: 300px;
     height: 200px;
     border-radius: 50%;
-    border: 1px solid white;
+    border: 2px solid white;
+}
+.form__title {
+    margin: 2rem;
+    font-size: 2.5rem;
 }
 .form {
     padding: 0 2.5rem;
@@ -51,7 +56,7 @@ body {
     margin: 0.5rem 0;
     transition: all 0.3s ease;
     text-indent: 10%;
-
+    border-radius: 10px;
 
 }
 .input:focus {
@@ -115,3 +120,4 @@ body {
     margin: 2.5rem 0;
     /* 40px */
 }
+
