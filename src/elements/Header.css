@@ -20,9 +20,12 @@
   
   .nav-item {
     float: left;
-    
-  }
   
+  }
+  .nav__list__item {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra del borde inferior */
+    border: 1px solid rgba(0, 0, 0, 0.082);
+  }
   .nav-item p {
     display: block;
     color: white;

@@ -4,9 +4,7 @@ import {auth} from '../firebase/firebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import { collection, addDoc } from "firebase/firestore"; 
 import {db} from "./../firebase/firebaseConfig";
-import { Formulario, Input, ContenedorBoton } from '../elements/Form'
-import Boton from '../elements/Boton'
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Alert from '../elements/Alert';
 import advantages1 from "./../assets/images/advantages/customer-service-agent.png"
 import { motion } from "framer-motion"
@@ -186,31 +184,32 @@ const Registro_usuarios = () => {
     
        <motion.div
        className='container__button'>
-       <Boton as="button" type='submit' >Create Account !</Boton>
+       <button as="button" type='submit' >Create Account !</button>
        </motion.div>
        <motion.div>
-       
        </motion.div>
-     
-         
-
    </motion.form>
-    
-      <Alert
-      type={alert.type}
-      message={alert.message}
-      statusAlert={estadoAlerta}
-      changeAlert={changeAlertStatus}
-      />
+   <div>
+        <Link to={"/sign-in"}>
+        <button >Alredy have an account? Sign in !</button>
+        </Link>
+          </div>
+          </article>
       <article className='article2'>
 
 <img src={advantages1} className='' alt="" />
-</article>
+
 </article>
 </section>
 </main>
 
-</div>   
+</div>
+<Alert
+      type={alert.type}
+      message={alert.message}
+      statusAlert={estadoAlerta}
+      changeAlert={changeAlertStatus}
+      />   
  </>
   )
 

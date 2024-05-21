@@ -42,10 +42,10 @@ export const Header = () => {
       transition={{ duration: 0.5 }}
         >
              <ul className={open ? 'menu-list open' : 'menu-list'}>
-              <li className="nav-item" onClick={() => handleNavigation('/home')}> <p>Home</p></li>
-              <li className="nav-item" onClick={() =>handleNavigation('/Ordenadores/')}><p>Ordenadores</p></li>
-              <li className="nav-item" onClick={() =>handleNavigation('/Servicios/')}><p>Services</p></li>
-              <li className="nav-item" onClick={() =>handleNavigation('/aaa/')}><p>Contact</p></li>
+              <li className="nav-item" onClick={() => handleNavigation('/home')}> <p className='nav__list__item'>Home</p></li>
+              <li className="nav-item" onClick={() =>handleNavigation('/Ordenadores/')}><p className='nav__list__item'>Ordenadores</p></li>
+              <li className="nav-item" onClick={() =>handleNavigation('/Servicios/')}><p className='nav__list__item'>Services</p></li>
+              <li className="nav-item" onClick={() =>handleNavigation('/aaa/')}><p className='nav__list__item'>Contact</p></li>
             </ul>
           </motion.nav>
           <motion.div

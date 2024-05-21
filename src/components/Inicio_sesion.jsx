@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { Helmet } from 'react-helmet'
-import Boton from '../elements/Boton'
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import {auth} from '../firebase/firebaseConfig';
 import Alert from '../elements/Alert'
@@ -178,19 +177,22 @@ export const Inicio_sesion = () => {
 
         <motion.div
         className='container__button'>
-        <Boton as="button" type='submit' primario>Iniciar Sesion</Boton>
+        <button as="button" type='submit'>Iniciar Sesion</button>
         </motion.div>
         <motion.div>
         
         </motion.div>
         <motion.div>
-        <div>
-            <Boton to={"/sign-up"}>Registro Usuario</Boton>
-          </div>
+       
         </motion.div>
           
 
     </motion.form>
+    <div>
+        <Link to={"/sign-up"}>
+        <button >Registro Usuario</button>
+        </Link>
+          </div>
     <div onClick={loginWithGoogle}>
     <img src={googlelogo} alt="" />
 

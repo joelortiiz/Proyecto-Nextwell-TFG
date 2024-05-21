@@ -1,5 +1,4 @@
 import React from 'react'
-import Boton from './Boton'
 import { auth } from '../firebase/firebaseConfig'
 import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
@@ -18,9 +17,9 @@ export const LogOutButton = () => {
     }
     return (
         <>
-            <Boton as="button" className='logout' onClick={logOut}>
+            <button as="button" className='logout' onClick={logOut}>
                 Cerrar Sesión
-            </Boton>
+            </button>
 
         </>
     )
