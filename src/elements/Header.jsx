@@ -1,18 +1,39 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import '@fortawesome/fontawesome-free/css/all.css';
 
-import React from 'react'
 import './Header.css'
 export const Header = () => {
+    const navigate = useNavigate(); // Usa useNavigate para obtener la función de navegación
+    const [open, setOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setOpen(!open);
+      };
+    const handleNavigation = (route) => {
+      navigate(route); // Navega a la ruta especificada cuando se hace clic en un enlace
+    };
+
   return (
   
-          <nav className="nav-menu">
-            <ul className="nav-list">
-              <li className="nav-item"><a href="#home">Home</a></li>
-              <li className="nav-item"><a href="#about">About</a></li>
-              <li className="nav-item"><a href="#services">Services</a></li>
-              <li className="nav-item"><a href="#contact">Contact</a></li>
+          <>
+           <div className="menu">
+      <div className="menu-header">
+             <div className="menu-icon" onClick={toggleMenu}>
+          <i className={open ? 'fas fa-times' : 'fas fa-bars'}></i>
+        </div>
+        </div>
+        <nav className="nav-menu">
+             <ul className={open ? 'menu-list open' : 'menu-list'}>
+              <li className="nav-item" onClick={() => handleNavigation('/home')}> <p>Home</p></li>
+              <li className="nav-item" onClick={() =>handleNavigation('/Ordenadores/')}><p>Ordenadores</p></li>
+              <li className="nav-item" onClick={() =>handleNavigation('/Servicios/')}><p>Services</p></li>
+              <li className="nav-item" onClick={() =>handleNavigation('/aaa/')}><p>Contact</p></li>
             </ul>
           </nav>
+          </div>
+          </>
         
   )
 }

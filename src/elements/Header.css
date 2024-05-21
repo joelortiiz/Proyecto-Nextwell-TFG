@@ -15,15 +15,97 @@
     float: left;
   }
   
-  .nav-item a {
+  .nav-item p {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    cursor: pointer;
   }
   
-  .nav-item a:hover {
-    background-color: #111;
+  .nav-item p:hover {
+    background-color: #fff;
+    color: black;
+    border-radius: 8px;
+  }
+  .menu {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .menu-header h1 {
+    margin: 0;
+  }
+  
+  .menu-icon {
+    display: none; /* Ocultar el icono del menú por defecto en pantallas grandes */
+    cursor: pointer;
+  }
+  
+  .menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .menu-list li {
+    margin-right: 20px;
+  }
+  
+  .menu-list li:last-child {
+    margin-right: 0;
+  }
+  
+  .menu-list a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* Estilos para pantallas más pequeñas (menor a 700px) */
+  @media screen and (max-width: 700px) {
+    .menu-header h1 {
+      display: none; /* Ocultar el logo en dispositivos móviles */
+    }
+  
+    .menu-icon {
+      display: block;
+       /* Mostrar el icono del menú como una hamburguesa en dispositivos móviles */
+    }
+  
+    .menu-list {
+      flex-direction: column; /* Mostrar los elementos del menú en una columna en dispositivos móviles */
+      position: absolute;
+      top: 50px; /* Ajustar la posición del menú en dispositivos móviles */
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      transition: max-height 0.3s ease-in-out;
+      max-height: 0; 
+      overflow: hidden;
+    }
+  
+    .menu-list.open {
+      max-height: 400px; /* Mostrar el menú cuando está abierto en dispositivos móviles */
+    }
+  
+    .menu-list li {
+      margin: 0;
+      text-align: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #444;
+    }
+  
+    .menu-list li:last-child {
+      border-bottom: none;
+    }
   }
   

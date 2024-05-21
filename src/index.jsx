@@ -10,6 +10,7 @@ import { AuthProvider } from './context/AuthContext';
 import { Helmet } from 'react-helmet';
 import { RutaPrivada } from './components/RutaPrivada';
 import { Ordenadores } from './components/Ordenadores';
+import { Ordenador } from './components/Ordenador';
 
 
 
@@ -25,17 +26,22 @@ const Index = () => {
         <BrowserRouter>
 
             <Routes>
-              <Route path='/iniciar-sesion' element={<IniciarSesion />} />
-              <Route path='/crear-cuenta' element={<RegistroUsuarios />} />
+              <Route path='/sign-in' element={<IniciarSesion />} />
+              <Route path='/sign-up' element={<RegistroUsuarios />} />
               
-              <Route path='/' element={
+              <Route path='/home' element={
                 <RutaPrivada>
                   <Home />
                 </RutaPrivada>
               } />
-               <Route path='/ordenadores/:id' element={
+               <Route path='/ordenadores/' element={
                 <RutaPrivada>
                  <Ordenadores/>
+                </RutaPrivada>
+              } /> 
+               <Route path='/ordenador/:id' element={
+                <RutaPrivada>
+                 <Ordenador/>
                 </RutaPrivada>
               } /> 
 

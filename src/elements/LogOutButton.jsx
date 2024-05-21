@@ -9,7 +9,7 @@ export const LogOutButton = () => {
     const logOut = async () => {
         try {
             await signOut(auth)
-            Navigate('/iniciar-sesion')
+            Navigate('/sign-in')
         } catch (error) {
             console.log(error)
         }

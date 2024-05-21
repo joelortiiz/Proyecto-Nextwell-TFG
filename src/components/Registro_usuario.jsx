@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import { Helmet } from 'react-helmet'
 import {auth} from '../firebase/firebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
+import { collection, addDoc } from "firebase/firestore"; 
+import {db} from "./../firebase/firebaseConfig";
 import { Header, Titulo, ContenedorHeader } from '../elements/Header'
 import { Formulario, Input, ContenedorBoton } from '../elements/Form'
 import Boton from '../elements/Boton'
@@ -67,8 +69,14 @@ const Registro_usuarios = () => {
 
     try {
       await createUserWithEmailAndPassword(auth, correo, password)
+      await addDoc(collection(db, "usuario"), {
+        nombre: correo.split('@')[0],
+        correo: correo,
+        rol: 'cliente',
+        password: password
+    })
       console.log('usuario registrado')
-      navigate('/')
+      navigate('/sign-in')
     } catch (error) {
       changeAlertStatus(true)
       let message;
@@ -101,7 +109,7 @@ const Registro_usuarios = () => {
         <ContenedorHeader>
           <Titulo>Registro de usuarios</Titulo>
           <div>
-            <Boton to={"/iniciar-sesion"}>Iniciar Sesion</Boton>
+            <Boton to={"/sig-in"}>Sign - In</Boton>
           </div>
 
         </ContenedorHeader>
@@ -110,14 +118,14 @@ const Registro_usuarios = () => {
         <Input
           type='email'
           name='email'
-          placeholder='Correo Electronico'
+          placeholder='Email'
       value={correo}
       onChange={handleChange}
         />
         <Input
           type='password'
           name='password'
-          placeholder='Repetir contraseña'
+          placeholder='Repeat password'
           value={password}
           onChange={handleChange}
 
@@ -131,7 +139,7 @@ const Registro_usuarios = () => {
 
         />
         <ContenedorBoton>
-          <Boton as="button" type='submit' >Crear cuenta</Boton>
+          <Boton as="button" type='submit' >Create Account !</Boton>
 
         </ContenedorBoton>
       </Formulario>
