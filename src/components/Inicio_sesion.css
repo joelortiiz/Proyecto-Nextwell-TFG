@@ -1,7 +1,6 @@
 body {
     background-color: #0F0B0C;
     color: red;
-    overflow: hidden;
     
 }
 .header {
@@ -12,11 +11,11 @@ body {
     background-color: #0F0B0C;
 
 }
-.container {
+.container__login {
     background-color: #0F0B0C;
     width: 100%;
-    max-width: 70rem;
-    max-height: 60rem;
+    max-width: 90rem;
+    border: 3px solid yellow;
     box-shadow: 0px 1.25 rem 2.5rem rgba(255, 0, 0, 0.1);
     border-radius: 0.625rem;
     margin: auto;
@@ -32,10 +31,12 @@ body {
 }
 .logo {
     margin-top: 1rem;
-    width: 300px;
-    height: 200px;
     border-radius: 50%;
     border: 2px solid white;
+}
+.logo2 {
+    width: 300px;
+    height: 120px;
 }
 .form__title {
     margin: 2rem;
@@ -107,10 +108,15 @@ body {
     justify-content: center;
     align-items: center;
 }
-@media screen and (min-width: 60rem) { /* 950px */
+@media screen and (min-width: 50rem) {
     
     .article2 {
         display: flex;
+    }
+    .logo2 {
+      
+        width: 500px;
+        height: 220px;
     }
     
 }

@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import { Helmet } from 'react-helmet'
-import { Titulo } from '../elements/Header'
 import Boton from '../elements/Boton'
 import {useNavigate} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
@@ -10,7 +9,6 @@ import './Inicio_sesion.css'
 import logo from './../assets/images/logos/logo_original.jpeg'
 import { motion } from "framer-motion" 
 import googlelogo from "./../assets/images/logos/logo_google.png"
-import advantages1 from "./../assets/images/advantages/customer-service-agent.png"
 
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
@@ -31,9 +29,10 @@ export const Inicio_sesion = () => {
     // This gives you a Google Access Token. You can use it to access the Google API.
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
-    console.log(token)
+    localStorage.setItem('userToken', token);
+
     // The signed-in user info.
-    const user = result.user;
+   // const user = result.user;
     // IdP data available using getAdditionalUserInfo(result)
     // ...
     navigate('/home')
@@ -186,7 +185,7 @@ export const Inicio_sesion = () => {
         </motion.div>
         <motion.div>
         <div>
-            <Boton to={"/crear-cuenta"}>Registro Usuario</Boton>
+            <Boton to={"/sign-up"}>Registro Usuario</Boton>
           </div>
         </motion.div>
           
@@ -197,10 +196,6 @@ export const Inicio_sesion = () => {
 
 
     </div>
-    </article>
-    <article className='article2'>
-
-       <img src={advantages1} className='' alt="" />
     </article>
     
     </section>
