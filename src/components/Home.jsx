@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from "framer-motion"
-import { useAtuh } from './context/AuthContext'
-import Boton from './elements/Boton';
-import { LogOutButton } from './elements/LogOutButton';
+import { useAtuh } from './../context/AuthContext'
+import { LogOutButton } from './../elements/LogOutButton';
+import { Header } from './../elements/Header';
 
-const App = () => {
+const Home = () => {
 	const {usuario} = useAtuh();
 	
 	return (
 		<Contenedor>
+            <Header/>
 			<Titulo>Bienvenido a NextWell </Titulo>
 			{usuario ? (
 				<motion.h3
@@ -47,4 +48,4 @@ const Titulo = styled.h2`
 	margin-bottom: 10px;
 `;
  
-export default App;
+export default Home;

@@ -1,6 +1,25 @@
 import styled from 'styled-components';
 
-const Header = styled.div`
+import React from 'react'
+import './Header.css'
+export const Header = () => {
+  return (
+  
+          <nav className="nav-menu">
+            <ul className="nav-list">
+              <li className="nav-item"><a href="#home">Home</a></li>
+              <li className="nav-item"><a href="#about">About</a></li>
+              <li className="nav-item"><a href="#services">Services</a></li>
+              <li className="nav-item"><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+        
+  )
+}
+
+
+
+const Headerr = styled.div`
     width: 100%;
     padding: 2.5rem; /* 40px */
     display: flex;
@@ -46,4 +65,4 @@ const ContenedorBotones = styled.div`
     align-items: center;
 `;
 
-export {Header, Titulo, ContenedorHeader, ContenedorBotones};
+export {Headerr, Titulo, ContenedorHeader, ContenedorBotones};

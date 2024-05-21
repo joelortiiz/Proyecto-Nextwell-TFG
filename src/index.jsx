@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Home from './components/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import IniciarSesion from './components/Inicio_sesion';
@@ -9,6 +9,7 @@ import RegistroUsuarios from './components/Registro_usuario';
 import { AuthProvider } from './context/AuthContext';
 import { Helmet } from 'react-helmet';
 import { RutaPrivada } from './components/RutaPrivada';
+import { Ordenadores } from './components/Ordenadores';
 
 
 
@@ -29,14 +30,14 @@ const Index = () => {
               
               <Route path='/' element={
                 <RutaPrivada>
-                  <App />
+                  <Home />
                 </RutaPrivada>
               } />
-              {/* <Route path='/ordenadores/:id' element={
+               <Route path='/ordenadores/:id' element={
                 <RutaPrivada>
-                  <Ordenadores />
+                 <Ordenadores/>
                 </RutaPrivada>
-              } /> */}
+              } /> 
 
             </Routes>
         </BrowserRouter>
