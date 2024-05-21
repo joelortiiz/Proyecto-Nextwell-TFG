@@ -71,12 +71,13 @@ const Registro_usuarios = () => {
 
     try {
       await createUserWithEmailAndPassword(auth, correo, password)
-      await addDoc(collection(db, "usuario"), {
-        nombre: correo.split('@')[0],
-        correo: correo,
-        rol: 'cliente',
-        password: password
-    })
+      // await addDoc(collection(db, "usuario"), {
+      //   nombre: correo.split('@')[0],
+      //   correo: correo,
+      //   rol: 'cliente',
+      //   password: password
+   // })
+   
       console.log('usuario registrado')
       navigate('/sign-in')
     } catch (error) {

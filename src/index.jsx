@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Home from './components/Home';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import IniciarSesion from './components/Inicio_sesion';
 import RegistroUsuarios from './components/Registro_usuario';
@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { RutaPrivada } from './components/RutaPrivada';
 import { Ordenadores } from './components/Ordenadores';
 import { Ordenador } from './components/Ordenador';
+import ErrorPage from './components/Error';
 
 
 
@@ -25,10 +26,19 @@ const Index = () => {
       <AuthProvider>
         <BrowserRouter>
 
-            <Routes>
+            <Routes >
               <Route path='/sign-in' element={<IniciarSesion />} />
               <Route path='/sign-up' element={<RegistroUsuarios />} />
-              
+
+
+             
+              <Route path="/" element={
+                 <RutaPrivada>
+              <Navigate to="/home" />
+              </RutaPrivada>
+              } />
+          
+
               <Route path='/home' element={
                 <RutaPrivada>
                   <Home />
@@ -44,7 +54,7 @@ const Index = () => {
                  <Ordenador/>
                 </RutaPrivada>
               } /> 
-
+      <Route path="*" element={<ErrorPage />} />
             </Routes>
         </BrowserRouter>
       </AuthProvider>

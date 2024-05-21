@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
+import { useAtuh } from './../context/AuthContext'
 import '@fortawesome/fontawesome-free/css/all.css';
-
+import { motion } from 'framer-motion';
+import logo from './../assets/images/logos/favicon.png'
 import './Header.css'
 export const Header = () => {
+
+	
+  
+
+    const { usuario } = useAtuh(); // Obtiene el usuario actual del contexto de AuthContext
     const navigate = useNavigate(); // Usa useNavigate para obtener la función de navegación
     const [open, setOpen] = useState(false);
 
@@ -24,14 +31,41 @@ export const Header = () => {
           <i className={open ? 'fas fa-times' : 'fas fa-bars'}></i>
         </div>
         </div>
-        <nav className="nav-menu">
+        <motion.div>
+          <img src={logo} alt="" className='header__logo' />
+        </motion.div>
+        <motion.nav 
+        className="nav-menu"
+        initial={{ opacity: 0 }}
+      animate={{ opacity: 1}}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+        >
              <ul className={open ? 'menu-list open' : 'menu-list'}>
               <li className="nav-item" onClick={() => handleNavigation('/home')}> <p>Home</p></li>
               <li className="nav-item" onClick={() =>handleNavigation('/Ordenadores/')}><p>Ordenadores</p></li>
               <li className="nav-item" onClick={() =>handleNavigation('/Servicios/')}><p>Services</p></li>
               <li className="nav-item" onClick={() =>handleNavigation('/aaa/')}><p>Contact</p></li>
             </ul>
-          </nav>
+          </motion.nav>
+          <motion.div
+          
+          >
+            <div className='container__pfp'>
+              <div>
+              {
+              usuario.photoURL ? <img src={usuario.photoURL} className='pfp' alt="" srcset="" /> : <img src='https://www.w3schools.com/howto/img_avatar.png' className='pfp' alt="" srcset="" />
+            }
+              </div>
+            <div>
+              {
+              usuario.displayName ? <h3>{usuario.displayName}</h3> : <h3>{usuario.email.split('@')[0]}</h3>
+              }
+            </div>
+            </div>
+            
+           
+          </motion.div>
           </div>
           </>
         

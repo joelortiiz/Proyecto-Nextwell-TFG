@@ -1,3 +1,8 @@
+.header__logo {
+  width: 100px;
+  height: 90px;
+  border-radius: 20px;
+}
 .nav-menu {
     background-color: #333;
     overflow: hidden;
@@ -9,10 +14,13 @@
     padding: 0;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+
   }
   
   .nav-item {
     float: left;
+    
   }
   
   .nav-item p {
@@ -22,6 +30,7 @@
     padding: 14px 16px;
     text-decoration: none;
     cursor: pointer;
+    
   }
   
   .nav-item p:hover {
@@ -33,6 +42,10 @@
     background-color: #333;
     color: #fff;
     padding: 10px;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
   
   .menu-header {
@@ -55,6 +68,9 @@
     padding: 0;
     margin: 0;
     display: flex;
+    align-items: center;
+    justify-content: center;
+
   }
   
   .menu-list li {
@@ -108,4 +124,15 @@
       border-bottom: none;
     }
   }
-  
+  .container__pfp {
+    display: flex;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+.pfp {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
