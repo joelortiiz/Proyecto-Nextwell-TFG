@@ -9,8 +9,12 @@ import Alert from '../elements/Alert';
 import advantages1 from "./../assets/images/advantages/customer-service-agent.png"
 import { motion } from "framer-motion"
 import logo from './../assets/images/logos/logo.jpeg'
+import { useAtuh } from '../context/AuthContext';
+
+
 
 const Registro_usuarios = () => {
+  const {usuario} =  useAtuh();
   
   const navigate = useNavigate()
   const [correo, setCorreo] = useState('')
@@ -69,12 +73,10 @@ const Registro_usuarios = () => {
 
     try {
       await createUserWithEmailAndPassword(auth, correo, password)
-      // await addDoc(collection(db, "usuario"), {
-      //   nombre: correo.split('@')[0],
-      //   correo: correo,
-      //   rol: 'cliente',
-      //   password: password
-   // })
+
+    //  await addUserToCollection();
+
+      
    
       console.log('usuario registrado')
       navigate('/sign-in')
@@ -100,7 +102,15 @@ const Registro_usuarios = () => {
     }
      
     }
+    const addUserToCollection = async () => {
 
+      //await db.collection("usuario").doc(usuario).set(data);
+      await addDoc(collection(db, "usuario", "aaa"), {
+        nombre: correo.split('@')[0],
+        correo: correo,
+        rol: 'default',
+   }) 
+    }
   return (
     <>
       <Helmet>

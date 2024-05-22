@@ -7,6 +7,7 @@ import { Header } from './../elements/Header';
 
 const Home = () => {
 	const {usuario} = useAtuh();
+
 	
 	return (
 		<>

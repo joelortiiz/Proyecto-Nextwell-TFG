@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Helmet } from 'react-helmet'
 import {Link, useNavigate} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import {auth} from '../firebase/firebaseConfig';
+import {auth, db} from '../firebase/firebaseConfig';
 import Alert from '../elements/Alert'
 import './Inicio_sesion.css'
 import logo from './../assets/images/logos/logo_original.jpeg'
@@ -10,6 +10,7 @@ import { motion } from "framer-motion"
 import googlelogo from "./../assets/images/logos/logo_google.png"
 
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { collection, setDoc } from 'firebase/firestore';
 
 
 const provider = new GoogleAuthProvider();
@@ -59,7 +60,7 @@ export const Inicio_sesion = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    debugger
+
     changeAlertStatus(false)
     changeAlert({})
     const validateEmail = 	/[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
@@ -84,6 +85,8 @@ export const Inicio_sesion = () => {
 
     try {
       await signInWithEmailAndPassword(auth, correo, password)
+
+
       navigate('/home')
     } catch (error) {
       changeAlertStatus(true)
