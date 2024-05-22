@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from "framer-motion"
 import { useAtuh } from './../context/AuthContext'
-import { LogOutButton } from './../elements/LogOutButton';
 import { Header } from './../elements/Header';
 
 import { Container, Typography } from '@mui/material';
 import ImageCarousel from './../elements/home/ImageCarousel';
+import ClientActions from './../elements/home/ClientActions';
 
 const images = [
 	{
@@ -48,13 +48,16 @@ const Home = () => {
 					No has iniciado sesión
 				</motion.h3>
 			)}
-			<LogOutButton></LogOutButton>
+			
 			<Container>
       <Typography variant="h4" align="center" gutterBottom>
         Image Carousel with Material-UI
       </Typography>
       <ImageCarousel images={images} />
     </Container>
+		<ClientActions>
+
+		</ClientActions>
 			</>
 	);
 }

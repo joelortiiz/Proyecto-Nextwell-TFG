@@ -1,20 +1,21 @@
 import React, {useState} from 'react'
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import { Helmet } from 'react-helmet'
-import {auth} from '../firebase/firebaseConfig';
+import {auth, db} from '../firebase/firebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import { collection, addDoc } from "firebase/firestore"; 
-import {db} from "./../firebase/firebaseConfig";
 import {Link, useNavigate} from 'react-router-dom'
 import Alert from '../elements/Alert';
 import advantages1 from "./../assets/images/advantages/customer-service-agent.png"
 import { motion } from "framer-motion"
 import logo from './../assets/images/logos/logo.jpeg'
-import { useAtuh } from '../context/AuthContext';
 
 
 
 const Registro_usuarios = () => {
-  const {usuario} =  useAtuh();
+//  const {usuario} =  useAtuh();
   
   const navigate = useNavigate()
   const [correo, setCorreo] = useState('')
@@ -23,7 +24,11 @@ const Registro_usuarios = () => {
   const [estadoAlerta, changeAlertStatus] = useState(false)
   const [alert, changeAlert] = useState({})
 
-
+  const userData = {
+    
+    // Otros campos de datos según las necesidades de tu aplicación
+  };
+  
   const handleChange = (e) => {
     switch (e.target.name) {
       case 'email':
@@ -72,8 +77,21 @@ const Registro_usuarios = () => {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, correo, password)
-
+      debugger
+      const {user} = await createUserWithEmailAndPassword(auth, correo, password)
+      console.log(user)
+      if (user) {
+  
+  
+        // Crear un documento correspondiente en la colección de usuarios en Firestore
+      //  await addDoc('usuarios').doc(user.uid).set(userData);
+  
+        await addDoc(collection(db, "usuarios"), {
+          nombre: correo.split('@')[0],
+          email: correo,
+            }) 
+        console.log('Usuario creado correctamente.');
+      }
     //  await addUserToCollection();
 
       
@@ -92,7 +110,7 @@ const Registro_usuarios = () => {
 					break;
 				default:
 					message = 'Hubo un error al intentar crear la cuenta.'
-          console.log(error.code)
+          console.log(error)
 				break;
       }
       changeAlert({
@@ -102,15 +120,7 @@ const Registro_usuarios = () => {
     }
      
     }
-    const addUserToCollection = async () => {
-
-      //await db.collection("usuario").doc(usuario).set(data);
-      await addDoc(collection(db, "usuario", "aaa"), {
-        nombre: correo.split('@')[0],
-        correo: correo,
-        rol: 'default',
-   }) 
-    }
+  
   return (
     <>
       <Helmet>

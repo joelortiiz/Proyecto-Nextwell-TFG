@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useAtuh } from './../context/AuthContext'
 import '@fortawesome/fontawesome-free/css/all.css';
 import { motion } from 'framer-motion';
+import { LogOutButton } from './LogOutButton';
 import logo from './../assets/images/logos/favicon.png'
 import './Header.css'
 export const Header = () => {
@@ -62,6 +63,9 @@ export const Header = () => {
               usuario.displayName ? <h3>{usuario.displayName}</h3> : <h3>{usuario.email.split('@')[0]}</h3>
               }
             </div>
+            </div>
+            <div>
+            <LogOutButton/>
             </div>
             
            
