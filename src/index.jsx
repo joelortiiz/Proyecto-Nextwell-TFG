@@ -13,6 +13,8 @@ import { Ordenadores } from './components/Ordenadores';
 import { Ordenador } from './components/Ordenador';
 import ErrorPage from './components/Error';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 
 const Index = () => {

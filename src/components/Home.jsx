@@ -5,6 +5,24 @@ import { useAtuh } from './../context/AuthContext'
 import { LogOutButton } from './../elements/LogOutButton';
 import { Header } from './../elements/Header';
 
+import { Container, Typography } from '@mui/material';
+import ImageCarousel from './../elements/home/ImageCarousel';
+
+const images = [
+	{
+	  src: 'https://via.placeholder.com/800x400?text=Image+1',
+	  text: 'Texto sobre la imagen 1'
+	},
+	{
+	  src: 'https://via.placeholder.com/800x400?text=Image+2',
+	  text: 'Texto sobre la imagen 2'
+	},
+	{
+	  src: 'https://via.placeholder.com/800x400?text=Image+3',
+	  text: 'Texto sobre la imagen 3'
+	},
+  ];
+
 const Home = () => {
 	const {usuario} = useAtuh();
 
@@ -31,6 +49,12 @@ const Home = () => {
 				</motion.h3>
 			)}
 			<LogOutButton></LogOutButton>
+			<Container>
+      <Typography variant="h4" align="center" gutterBottom>
+        Image Carousel with Material-UI
+      </Typography>
+      <ImageCarousel images={images} />
+    </Container>
 			</>
 	);
 }
