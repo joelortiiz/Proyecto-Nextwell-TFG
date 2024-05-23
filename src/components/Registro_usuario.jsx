@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
-import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { Helmet } from 'react-helmet'
 import {auth, db} from '../firebase/firebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
-import { collection, addDoc } from "firebase/firestore"; 
+import { doc, setDoc } from "firebase/firestore"; 
 import {Link, useNavigate} from 'react-router-dom'
 import Alert from '../elements/Alert';
 import advantages1 from "./../assets/images/advantages/customer-service-agent.png"
@@ -24,10 +23,7 @@ const Registro_usuarios = () => {
   const [estadoAlerta, changeAlertStatus] = useState(false)
   const [alert, changeAlert] = useState({})
 
-  const userData = {
-    
-    // Otros campos de datos según las necesidades de tu aplicación
-  };
+ 
   
   const handleChange = (e) => {
     switch (e.target.name) {
@@ -81,20 +77,12 @@ const Registro_usuarios = () => {
       const {user} = await createUserWithEmailAndPassword(auth, correo, password)
       console.log(user)
       if (user) {
-  
-  
-        // Crear un documento correspondiente en la colección de usuarios en Firestore
-      //  await addDoc('usuarios').doc(user.uid).set(userData);
-  
-        await addDoc(collection(db, "usuarios"), {
-          nombre: correo.split('@')[0],
-          email: correo,
-            }) 
-        console.log('Usuario creado correctamente.');
-      }
-    //  await addUserToCollection();
-
-      
+      await setDoc(doc(db, "usuarios", user.uid), {
+        nombre: correo.split('@')[0],
+        email: correo,
+          }) 
+      console.log('Usuario creado correctamente.');
+        }
    
       console.log('usuario registrado')
       navigate('/sign-in')
