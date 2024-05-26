@@ -7,6 +7,7 @@ import { Header } from './../elements/Header';
 import { Container, Typography } from '@mui/material';
 import ImageCarousel from './../elements/home/ImageCarousel';
 import ClientActions from './../elements/home/ClientActions';
+import { useIsAdmin } from '../services/hooks/useIsAdmin';
 
 const images = [
 	{
@@ -25,8 +26,9 @@ const images = [
 
 const Home = () => {
 	const {usuario} = useAtuh();
-
+	const isAdmin = useIsAdmin(usuario)
 	
+	console.log(isAdmin)
 	return (
 		<>
             <Header/>

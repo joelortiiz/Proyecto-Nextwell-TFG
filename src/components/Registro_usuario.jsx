@@ -73,7 +73,6 @@ const Registro_usuarios = () => {
     }
 
     try {
-      debugger
       const {user} = await createUserWithEmailAndPassword(auth, correo, password)
       console.log(user)
 
@@ -86,6 +85,7 @@ const Registro_usuarios = () => {
       await setDoc(doc(db, "usuarios", user.uid), {
         nombre: correo.split('@')[0],
         email: correo,
+        isAdmin: false,
           }) 
         console.log('Usuario creado correctamente.');
       }

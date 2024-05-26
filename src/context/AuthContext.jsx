@@ -7,7 +7,6 @@ const AuthContext = React.createContext();
 //Hook to acess to the context 
 
 const useAtuh = () => {
-    debugger
     return useContext(AuthContext)
 }
 
