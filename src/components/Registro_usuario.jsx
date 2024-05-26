@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import firebase from 'firebase/firestore';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 import { Helmet } from 'react-helmet'
 import {auth, db} from '../firebase/firebaseConfig';
@@ -23,10 +23,7 @@ const Registro_usuarios = () => {
   const [estadoAlerta, changeAlertStatus] = useState(false)
   const [alert, changeAlert] = useState({})
 
-  const userData = {
-    
-    // Otros campos de datos según las necesidades de tu aplicación
-  };
+ 
   
   const handleChange = (e) => {
     switch (e.target.name) {
@@ -85,11 +82,11 @@ const Registro_usuarios = () => {
   
         // Crear un documento correspondiente en la colección de usuarios en Firestore
       //  await addDoc('usuarios').doc(user.uid).set(userData);
-      let user = firebase.auth().currentUser;
-        await setDoc(doc(db, "usuarios", user.uid), {
-          nombre: correo.split('@')[0],
-          email: correo,
-            }) 
+  
+      await setDoc(doc(db, "usuarios", user.uid), {
+        nombre: correo.split('@')[0],
+        email: correo,
+          }) 
         console.log('Usuario creado correctamente.');
       }
     //  await addUserToCollection();
