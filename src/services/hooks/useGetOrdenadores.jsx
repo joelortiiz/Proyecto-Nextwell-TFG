@@ -8,7 +8,8 @@ export const useGetOrdenadores = () => {
     const [ordenadores, setOrdenadores] = useState([]);
 
         useEffect(() => {
-            const consulta = query(collection(db, 'ordenadores'), where('userId', '==', usuario.uid), orderBy('marca', 'desc'), limit(10))
+            
+            const consulta = query(collection(db, 'ordenadores'), where('id', '==', usuario.uid))
 
             const unsuscribe = onSnapshot(consulta, (snapshot) => {
                
@@ -20,7 +21,7 @@ export const useGetOrdenadores = () => {
             setOrdenadores(snapshot.docs.map(ordenador => {return {...ordenador.data(), id: ordenador.id}})
             )
             })
-        }
-        , [usuario])
+            return unsuscribe
+        }, [usuario])
   return [ordenadores]
 }

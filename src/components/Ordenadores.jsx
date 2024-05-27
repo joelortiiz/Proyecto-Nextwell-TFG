@@ -8,20 +8,7 @@ import { useGetOrdenadores } from '../services/hooks/useGetOrdenadores';
 
 export const Ordenadores = (userId) => {
     const ordenadores = useGetOrdenadores();
-
-    const [hasComputers, setHasComputers] = useState(false);
-
-    useEffect(() => {
-        const checkUserComputers = async () => {
-      try {
-        
-      } catch (error) {
-        console.error('Error checking user computers:', error);
-      }
-    };
-  
-      checkUserComputers();
-    }, [userId]);
+    console.log(ordenadores);
     return (
         <>
             <Header />
@@ -33,7 +20,7 @@ export const Ordenadores = (userId) => {
                             Ordenadores
                         </motion.h2>
                     </article>
-                    {hasComputers ? (
+                    {ordenadores ? (
         <p>El usuario tiene ordenadores registrados.</p>
       ) : (
         <p>El usuario no tiene ordenadores registrados.</p>
