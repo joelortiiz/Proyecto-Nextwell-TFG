@@ -1,10 +1,9 @@
 import { Header } from '../elements/Header'
 import { motion } from 'framer-motion'
-import { getDatabase, ref, child, get } from "firebase/database";
-import { useAtuh } from './../context/AuthContext'
-import React, { useEffect, useState } from 'react';
-import { db } from './../firebase/firebaseConfig';
 import { useGetOrdenadores } from '../services/hooks/useGetOrdenadores';
+import ListaOrdenadores from '../elements/ordenadores/OrdenadoresList';
+import { HaveNoOrdenadores } from '../elements/ordenadores/HaveNoOrdenadores';
+import { Link } from 'react-router-dom';
 
 export const Ordenadores = (userId) => {
     const ordenadores = useGetOrdenadores();
@@ -14,16 +13,24 @@ export const Ordenadores = (userId) => {
             <Header />
             <div className='container__ordenadores'>
                 <section>
-                    <article>
+                    <article className='text-center'>
+                        <div>
                         <motion.h2
-                            className='h2'>
-                            Ordenadores
+                            className='h2'
+                            >
+                           <em>Estos son tus equipos registrados</em> 
                         </motion.h2>
+                        <p >
+                        <Link to={"/ordenadores/newordenador"}>Hola </Link>
+                        </p>
+                        </div>
+                     
+
                     </article>
                     {ordenadores ? (
-        <p>El usuario tiene ordenadores registrados.</p>
+       <ListaOrdenadores ordenadores={ordenadores} />
       ) : (
-        <p>El usuario no tiene ordenadores registrados.</p>
+        <HaveNoOrdenadores />
       )}
                 </section>
 

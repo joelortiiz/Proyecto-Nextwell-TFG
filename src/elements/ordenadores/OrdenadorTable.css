@@ -1,0 +1,24 @@
+.ordenador-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+.ordenador-table th, .ordenador-table td {
+  padding: 12px 15px;
+  border: 1px solid #5b5b5b;
+}
+
+.ordenador-table thead {
+  background-color: #151515;
+}
+
+.ordenador-table tbody tr:nth-child(even) {
+  background-color: #3e3e3e;
+}
+
+.ordenador-table tbody tr:hover {
+  background-color: #656db48f;
+}

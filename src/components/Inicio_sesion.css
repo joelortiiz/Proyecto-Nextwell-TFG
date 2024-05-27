@@ -1,8 +1,11 @@
 body {
     background-color: #0F0B0C;
-    color: red;
+    color: white;
     max-width: 70rem;
     
+}
+.text-center {
+    text-align: center;
 }
 .header {
     width: 100%;
