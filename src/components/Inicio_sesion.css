@@ -34,6 +34,16 @@ body {
     }
     
 }
+.load {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.load__img {
+    width: 120px;
+    height: 100px;
+}
 .logo {
     margin-top: 1rem;
     border-radius: 50%;
