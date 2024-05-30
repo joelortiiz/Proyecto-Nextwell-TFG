@@ -31,16 +31,11 @@ const Index = () => {
             <Routes >
               <Route path='/sign-in' element={<IniciarSesion />} />
               <Route path='/sign-up' element={<RegistroUsuarios />} />
-
-
-             
               <Route path="/" element={
                  <RutaPrivada>
               <Navigate to="/home" />
               </RutaPrivada>
               } />
-          
-
               <Route path='/home' element={
                 <RutaPrivada>
                   <Home />

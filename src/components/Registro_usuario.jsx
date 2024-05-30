@@ -80,6 +80,7 @@ const Registro_usuarios = () => {
       await setDoc(doc(db, "usuarios", user.uid), {
         nombre: correo.split('@')[0],
         email: correo,
+        isAdmin: false,
           }) 
       console.log('Usuario creado correctamente.');
         }
