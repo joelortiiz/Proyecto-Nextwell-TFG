@@ -1,11 +1,12 @@
 import React from 'react';
 import Cards from './../Card'; // Ajusta la ruta según sea necesario
+import card1 from './../../assets/images/cards/card1.jpg'
 
 const cardsData = [
     {
       title: 'Tus Ordenadores',
       description: 'Visualiza los detalles de tu equipo, solicita una reparación o cambia sus componentes',
-      image: 'https://via.placeholder.com/300x140',
+      image: card1,
       link: '/Ordenadores', // Agrega el enlace para cada tarjeta
     },
     {

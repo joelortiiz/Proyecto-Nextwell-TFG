@@ -23,7 +23,7 @@ const StyledCardContent = styled(CardContent)(({ theme }) => ({
 function Cards({ cardsData }) {
   return (
     <Box sx={{ flexGrow: 1, padding: 1 }}>
-    <Grid container spacing={1} justifyContent="center">
+    <Grid container spacing={1} >
       {cardsData.map((card, index) => (
         <Grid
           item
@@ -31,8 +31,6 @@ function Cards({ cardsData }) {
           xs={12}
           sm={6}
           md={4}
-          display="flex"
-          justifyContent="center"
         >
           <Link to={card.link}>
             <StyledCard>
@@ -40,14 +38,14 @@ function Cards({ cardsData }) {
                 image={card.image}
                 title={card.title}
               />
-              <StyledCardContent>
-                <Typography gutterBottom variant="h5" component="div">
+              <div className='a'>
+              <p>
                   {card.title}
-                </Typography>
+                  </p>
                 <Typography variant="body2" >
                   {card.description}
                 </Typography>
-              </StyledCardContent>
+              </div>
             </StyledCard>
           </Link>
         </Grid>

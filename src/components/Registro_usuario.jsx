@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
+import firebase from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/firestore';
 import { Helmet } from 'react-helmet'
 import {auth, db} from '../firebase/firebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
@@ -73,17 +73,25 @@ const Registro_usuarios = () => {
     }
 
     try {
-      debugger
       const {user} = await createUserWithEmailAndPassword(auth, correo, password)
       console.log(user)
+
       if (user) {
+  
+  
+        // Crear un documento correspondiente en la colección de usuarios en Firestore
+      //  await addDoc('usuarios').doc(user.uid).set(userData);
+  
       await setDoc(doc(db, "usuarios", user.uid), {
         nombre: correo.split('@')[0],
         email: correo,
         isAdmin: false,
           }) 
-      console.log('Usuario creado correctamente.');
-        }
+        console.log('Usuario creado correctamente.');
+      }
+    //  await addUserToCollection();
+
+      
    
       console.log('usuario registrado')
       navigate('/sign-in')
