@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { db } from './../firebase/firebaseConfig'; // Importa la configuración de Firebase
 import { collection, addDoc } from 'firebase/firestore';
-
+import { useAtuh } from './../context/AuthContext'
 import load from './../assets/images/carga-unscreen.gif';
 import './Ordenador.css'; // Importa tus estilos CSS
 import torre1 from './../assets/images/componentes/torre1.webp'
@@ -13,6 +13,7 @@ import torre2 from './../assets/images/componentes/torre2.webp'
 import torre3 from './../assets/images/componentes/torre3.webp'
 
 export const NewOrdenador = () => {
+	const {usuario} = useAtuh();
 
   const [gpuData, setGpuData] = useState([]);
   const [cpuData, setCpuData] = useState([]);
@@ -23,8 +24,8 @@ export const NewOrdenador = () => {
   const [selectedCpu, setSelectedCpu] = useState('');
   const [selectedSsd, setSelectedSsd] = useState('');
   const [selectedTorre, setSelectedTorre] = useState('');
-  const [customTorre, setCustomTorre] = useState(''); // Estado para la torre personalizada
-  const [formError, setFormError] = useState(''); // Estado para el mensaje de error del formulario
+  const [customTorre, setCustomTorre] = useState('');
+  const [formError, setFormError] = useState(''); 
 
   const torres = [
     {
@@ -88,7 +89,8 @@ export const NewOrdenador = () => {
       gpu: selectedGpu,
       cpu: selectedCpu,
       ssd: selectedSsd,
-      torre: selectedTorre === 'Otra' ? customTorre : selectedTorre
+      torre: selectedTorre === 'Otra' ? customTorre : selectedTorre,
+      userId: usuario.uid,
     };
 
     try {
@@ -113,7 +115,7 @@ export const NewOrdenador = () => {
                 <em>Añadir un nuevo ordenador a tu </em>
               </motion.h2>
               <p>
-                <Link to={"/ordenadores/newordenador"}>Volver a todos tus Equipos </Link>
+                <Link to={"/ordenadores"}>Volver a todos tus Equipos </Link>
               </p>
             </div>
           </article>
