@@ -15,6 +15,7 @@ import torre3 from './../assets/images/componentes/torre3.webp'
 export const NewOrdenador = () => {
 	const {usuario} = useAtuh();
 
+  const [nombre, setNombre] = useState('');
   const [gpuData, setGpuData] = useState([]);
   const [cpuData, setCpuData] = useState([]);
   const [ssdData, setSsdData] = useState([]);
@@ -26,6 +27,8 @@ export const NewOrdenador = () => {
   const [selectedTorre, setSelectedTorre] = useState('');
   const [customTorre, setCustomTorre] = useState('');
   const [formError, setFormError] = useState(''); 
+  const [soWindows, setSoWindows] = useState([]);
+  const [soLinux, setSoLinux] = useState([]);
 
   const torres = [
     {
@@ -53,6 +56,16 @@ export const NewOrdenador = () => {
 
         const responseSsd = await axios.get('http://localhost:3001/api/ssds');
         setSsdData(responseSsd.data);
+        
+        const responseSoWindows = await axios.get('http://localhost:3001/api/os');
+        console.log(responseSoWindows)
+      
+          setSoWindows(responseSoWindows.data[0].editions);
+        
+        const responseSoLinux = await axios.get('http://localhost:3001/api/os');
+       
+        setSoLinux(responseSoLinux.data[0].editions);
+        
       } catch (error) {
         setError('Error fetching data');
         console.error('Error fetching data', error);
@@ -75,17 +88,20 @@ export const NewOrdenador = () => {
   const handleCustomTorreChange = (event) => {
     setCustomTorre(event.target.value);
   };
-
+  const handleNameChange = (event) => {
+    setNombre(event.target.value);
+  };
 
 
   const handleAddOrdenador = async () => {
     debugger
-    if (!selectedGpu || !selectedCpu || !selectedSsd || (!selectedTorre && selectedTorre !== 'Otra') || (selectedTorre === 'Otra' && !customTorre)) {
+    if ( nombre === "" || !selectedGpu || !selectedCpu || !selectedSsd || (!selectedTorre && selectedTorre !== 'Otra') || (selectedTorre === 'Otra' && !customTorre)) {
       setFormError('Todos los campos deben ser rellenados.');
       return;
     }
    
     const newOrdenador = {
+      nombre: nombre,
       gpu: selectedGpu,
       cpu: selectedCpu,
       ssd: selectedSsd,
@@ -133,6 +149,13 @@ export const NewOrdenador = () => {
         ) : (
           <>
             <div className='select-container'>
+
+            <h1>Nombre del Equipo</h1>
+            <input type="text" className='custom-select' placeholder='Ej: Ordenador trabajo, Ordenador personal...'
+            value={nombre}
+            onChange={handleNameChange}
+             />
+
                  <h1>GPU List</h1>
             <select className='custom-select' value={selectedGpu} onChange={(e) => setSelectedGpu(e.target.value)}>
               <option value="">Selecciona una GPU</option>
@@ -155,8 +178,17 @@ export const NewOrdenador = () => {
 
             <h1>SSD List</h1>
             <select className='custom-select' value={selectedSsd} onChange={(e) => setSelectedSsd(e.target.value)}>
-              <option value="">Selecciona un SSD</option>
+              <option value="">Selecciona un SO de Windows</option>
               {ssdData.map((ssd, index) => (
+                <option key={index} value={ssd}>
+                  {ssd}
+                </option>
+              ))}
+            </select>
+            <h1>Windows List</h1>
+            <select className='custom-select' value={selectedSsd} onChange={(e) => setSelectedSsd(e.target.value)}>
+              <option value="">Selecciona un SSD</option>
+              {soWindows.map((ssd, index) => (
                 <option key={index} value={ssd}>
                   {ssd}
                 </option>

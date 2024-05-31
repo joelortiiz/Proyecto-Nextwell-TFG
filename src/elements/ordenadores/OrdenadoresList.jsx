@@ -2,12 +2,12 @@ import React from 'react';
 import './OrdenadorTable.css';
 
 const OrdenadorTable = ({ ordenadores }) => (
+
   <table className="ordenador-table">
+      {console.log(ordenadores)}
     <thead>
       <tr>
         <th>Nombre</th>
-        <th>Marca</th>
-        <th>Modelo</th>
         <th>Procesador</th>
         <th>RAM</th>
         <th>Disco</th>
@@ -20,12 +20,10 @@ const OrdenadorTable = ({ ordenadores }) => (
         subArray.map(ordenador => (
           <tr key={ordenador.id}>
             <td>{ordenador.nombre}</td>
-            <td>{ordenador.marca}</td>
-            <td>{ordenador.modelo}</td>
-            <td>{ordenador.procesador}</td>
-            <td>{ordenador.ram}</td>
-            <td>{ordenador.disco}</td>
-            <td>{ordenador.tarjetaGrafica}</td>
+            <td>{ordenador.cpu}</td>
+            <td>{ordenador.gpu}</td>
+            <td>{ordenador.torre}</td>
+            <td>{ordenador.gpu}</td>
             <td>{ordenador.sistemaOperativo}</td>
           </tr>
         ))

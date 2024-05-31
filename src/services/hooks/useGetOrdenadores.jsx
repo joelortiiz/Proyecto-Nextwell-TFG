@@ -9,7 +9,7 @@ export const useGetOrdenadores = () => {
 
         useEffect(() => {
             
-            const consulta = query(collection(db, 'ordenadores'), where('id', '==', usuario.uid))
+            const consulta = query(collection(db, 'ordenadores'), where('userId', '==', usuario.uid))
 
             const unsuscribe = onSnapshot(consulta, (snapshot) => {
                
