@@ -1,0 +1,62 @@
+/* Estilo para el contenedor del select */
+.select-container {
+    margin: 20px 0;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+  }
+  
+  /* Estilo para el elemento select */
+  select.custom-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    appearance: none; /* Elimina el estilo predeterminado del navegador */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+  }
+  
+  /* Estilo para las opciones del select */
+  select.custom-select option {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  /* Flecha personalizada para el select */
+  .select-container::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 14px;
+    color: #666;
+  }
+  .custom-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .selected-torre {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .selected-torre-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  

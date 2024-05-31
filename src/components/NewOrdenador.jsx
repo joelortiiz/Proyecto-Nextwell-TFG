@@ -1,9 +1,17 @@
-import { Header } from '../elements/Header'
-import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import load from './../assets/images/carga-unscreen.gif'
+import { Header } from '../elements/Header';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { db } from './../firebase/firebaseConfig'; // Importa la configuración de Firebase
+import { collection, addDoc } from 'firebase/firestore';
+
+import load from './../assets/images/carga-unscreen.gif';
+import './Ordenador.css'; // Importa tus estilos CSS
+import torre1 from './../assets/images/componentes/torre1.webp'
+import torre2 from './../assets/images/componentes/torre2.webp'
+import torre3 from './../assets/images/componentes/torre3.webp'
+
 export const NewOrdenador = () => {
 
   const [gpuData, setGpuData] = useState([]);
@@ -11,9 +19,29 @@ export const NewOrdenador = () => {
   const [ssdData, setSsdData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedGpu, setSelectedGpu] = useState('');
+  const [selectedCpu, setSelectedCpu] = useState('');
+  const [selectedSsd, setSelectedSsd] = useState('');
+  const [selectedTorre, setSelectedTorre] = useState('');
+  const [customTorre, setCustomTorre] = useState(''); // Estado para la torre personalizada
+  const [formError, setFormError] = useState(''); // Estado para el mensaje de error del formulario
+
+  const torres = [
+    {
+      name: "Forgeon Tiberium ARGB Cristal Templado USB 3.0 Blanca",
+      img: torre1
+    },
+    {
+      name: "Tempest Mirage RGB Mesh Torre ATX Blanca",
+      img: torre2
+    },
+    {
+      name: "Nox Hummer TGX Rainbow RGB 3.0 USB Cristal Templado LED Negra",
+      img: torre3
+    }
+  ]
 
   useEffect(() => {
-    debugger
     const fetchData = async () => {
       try {
         const responseGpu = await axios.get('http://localhost:3001/api/gpus');
@@ -35,7 +63,44 @@ export const NewOrdenador = () => {
     fetchData();
   }, []);
 
+  const handleTorreChange = (event) => {
+    const selectedName = event.target.value;
+    setSelectedTorre(selectedName);
+    if (selectedName === 'Otra') {
+      setCustomTorre('');
+    }
+  };
 
+  const handleCustomTorreChange = (event) => {
+    setCustomTorre(event.target.value);
+  };
+
+
+
+  const handleAddOrdenador = async () => {
+    debugger
+    if (!selectedGpu || !selectedCpu || !selectedSsd || (!selectedTorre && selectedTorre !== 'Otra') || (selectedTorre === 'Otra' && !customTorre)) {
+      setFormError('Todos los campos deben ser rellenados.');
+      return;
+    }
+   
+    const newOrdenador = {
+      gpu: selectedGpu,
+      cpu: selectedCpu,
+      ssd: selectedSsd,
+      torre: selectedTorre === 'Otra' ? customTorre : selectedTorre
+    };
+
+    try {
+      await addDoc(collection(db, 'ordenadores'), newOrdenador);
+      alert('Ordenador añadido correctamente!');
+      setFormError(''); // Limpiar el mensaje de error si todo está bien
+    } catch (error) {
+      console.error('Error adding document: ', error);
+      alert('Error al añadir el ordenador.');
+    }
+  };
+  const selectedTorreData = torres.find(torre => torre.name === selectedTorre);
 
   return (
     <>
@@ -44,21 +109,15 @@ export const NewOrdenador = () => {
         <section>
           <article className='text-center'>
             <div>
-              <motion.h2
-                className='h2'
-              >
+              <motion.h2 className='h2'>
                 <em>Añadir un nuevo ordenador a tu </em>
               </motion.h2>
-              <p >
+              <p>
                 <Link to={"/ordenadores/newordenador"}>Volver a todos tus Equipos </Link>
               </p>
             </div>
-
-
           </article>
-
         </section>
-
       </div>
       <div>
         {loading ? (
@@ -71,8 +130,10 @@ export const NewOrdenador = () => {
           </div>
         ) : (
           <>
-            <h1>GPU List</h1>
-            <select>
+            <div className='select-container'>
+                 <h1>GPU List</h1>
+            <select className='custom-select' value={selectedGpu} onChange={(e) => setSelectedGpu(e.target.value)}>
+              <option value="">Selecciona una GPU</option>
               {gpuData.map((gpu, index) => (
                 <option key={index} value={gpu}>
                   {gpu}
@@ -81,7 +142,8 @@ export const NewOrdenador = () => {
             </select>
 
             <h1>CPU List</h1>
-            <select>
+            <select className='custom-select' value={selectedCpu} onChange={(e) => setSelectedCpu(e.target.value)}>
+              <option value="">Selecciona una CPU</option>
               {cpuData.map((cpu, index) => (
                 <option key={index} value={cpu}>
                   {cpu}
@@ -90,16 +152,56 @@ export const NewOrdenador = () => {
             </select>
 
             <h1>SSD List</h1>
-            <select>
+            <select className='custom-select' value={selectedSsd} onChange={(e) => setSelectedSsd(e.target.value)}>
+              <option value="">Selecciona un SSD</option>
               {ssdData.map((ssd, index) => (
                 <option key={index} value={ssd}>
                   {ssd}
                 </option>
               ))}
             </select>
-          </>
+
+            <div className='select-container'>
+            <h1>Torre List</h1>
+            <select className='custom-select' value={selectedTorre} onChange={handleTorreChange}>
+              <option value="">Selecciona una torre</option>
+              {torres.map((torre, index) => (
+                <option key={index} value={torre.name}>
+                  {torre.name}
+                </option>
+              ))}
+              <option value="Otra">Otra</option>
+            </select>
+
+            {selectedTorreData && (
+              <div className='selected-torre'>
+                <h2>{selectedTorreData.name}</h2>
+                <img src={selectedTorreData.img} alt={selectedTorreData.name} className='selected-torre-image' />
+              </div>
+            )}
+
+            {selectedTorre === 'Otra' && (
+              <div className='custom-torre-input'>
+                <label htmlFor="custom-torre">Escribe el nombre de tu torre:</label>
+                <input
+                  type="text"
+                  id="custom-torre"
+                  value={customTorre}
+                  onChange={handleCustomTorreChange}
+                />
+              </div>
+            )}
+
+            {formError && <div className='error-message'>{formError}</div>} {/* Mostrar mensaje de error si hay alguno */}
+            
+            <button onClick={handleAddOrdenador}>Añadir Ordenador</button>
+     
+        
+            </div>
+            </div>
+            </>
         )}
       </div>
     </>
-  )
-}
+  );
+};
