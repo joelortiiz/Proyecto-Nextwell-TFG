@@ -1,6 +1,6 @@
 import { Header } from '../elements/Header'
 import { motion } from 'framer-motion'
-import { useGetOrdenadores } from '../services/hooks/useGetOrdenadores';
+import { useGetOrdenadores } from './../services/hooks/useGetOrdenadores';
 import ListaOrdenadores from '../elements/ordenadores/OrdenadoresList';
 import { HaveNoOrdenadores } from '../elements/ordenadores/HaveNoOrdenadores';
 import { Link } from 'react-router-dom';

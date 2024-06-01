@@ -65,7 +65,7 @@ const OrdenadorTable = ({ ordenadores, setOrdenadores }) => {
                       onClick={() => handleDelete(ordenador.id)} 
                       style={{ cursor: 'pointer' }} 
                     />
-                    <Link to={`/editar-ordenador/${ordenador.id}`}>
+                    <Link to={`/ordenador/${ordenador.id}`}>
                       <img src={edit} alt="Editar" />
                     </Link>
                   </>

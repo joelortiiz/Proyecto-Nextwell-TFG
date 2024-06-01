@@ -59,4 +59,78 @@
     border-radius: 4px;
     margin-top: 10px;
   }
+  /* Ordenador.css */
+
+.ordenador-container {
+  max-width: 600px;
+  margin-top: 2rem;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #5e5e5e6a;
+}
+
+.ordenador-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.ordenador-container form {
+  margin-bottom: 20px;
   
+}
+
+.ordenador-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.ordenador-container input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.ordenador-container button {
+  padding: 10px 20px;
+  background-color: #b20000;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.ordenador-container button:hover {
+  background-color: #0056b3;
+}
+
+.confirmation-message {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #28a745;
+  border-radius: 5px;
+  background-color: #d4edda;
+}
+
+.confirmation-message p {
+  margin: 0;
+  color: #28a745;
+}
+
+.confirmation-message button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.confirmation-message button:hover {
+  background-color: #218838;
+}

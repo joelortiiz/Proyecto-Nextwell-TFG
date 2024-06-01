@@ -1,7 +1,7 @@
 import  {useState, useEffect} from 'react'
 import { db } from './../../firebase/firebaseConfig';
 import { useAtuh } from '../../context/AuthContext';
-import { collection, onSnapshot, query, orderBy, where, limit } from 'firebase/firestore';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 
 export const useGetOrdenadores = () => {
     const {usuario} = useAtuh();
