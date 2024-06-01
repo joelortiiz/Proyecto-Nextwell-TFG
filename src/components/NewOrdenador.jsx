@@ -11,6 +11,8 @@ import './Ordenador.css'; // Importa tus estilos CSS
 import torre1 from './../assets/images/componentes/torre1.webp'
 import torre2 from './../assets/images/componentes/torre2.webp'
 import torre3 from './../assets/images/componentes/torre3.webp'
+import windowsLogo from './../assets/images/logos/windows.png';
+import linuxLogo from './../assets/images/logos/linux.webp';
 
 export const NewOrdenador = () => {
 	const {usuario} = useAtuh();
@@ -27,8 +29,22 @@ export const NewOrdenador = () => {
   const [selectedTorre, setSelectedTorre] = useState('');
   const [customTorre, setCustomTorre] = useState('');
   const [formError, setFormError] = useState(''); 
+
+  const [selectedOS, setSelectedOS] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
+
   const [soWindows, setSoWindows] = useState([]);
   const [soLinux, setSoLinux] = useState([]);
+
+
+  const handleOSClick = (os) => {
+    setSelectedOS(os);
+    setSelectedOption('');
+  };
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
   const torres = [
     {
@@ -64,7 +80,7 @@ export const NewOrdenador = () => {
         
         const responseSoLinux = await axios.get('http://localhost:3001/api/os');
        
-        setSoLinux(responseSoLinux.data[0].editions);
+        setSoLinux(responseSoLinux.data[1].editions);
         
       } catch (error) {
         setError('Error fetching data');
@@ -107,6 +123,7 @@ export const NewOrdenador = () => {
       ssd: selectedSsd,
       torre: selectedTorre === 'Otra' ? customTorre : selectedTorre,
       userId: usuario.uid,
+      so: selectedOption
     };
 
     try {
@@ -185,16 +202,7 @@ export const NewOrdenador = () => {
                 </option>
               ))}
             </select>
-            <h1>Windows List</h1>
-            <select className='custom-select' value={selectedSsd} onChange={(e) => setSelectedSsd(e.target.value)}>
-              <option value="">Selecciona un SSD</option>
-              {soWindows.map((ssd, index) => (
-                <option key={index} value={ssd}>
-                  {ssd}
-                </option>
-              ))}
-            </select>
-
+           
             <div className='select-container'>
             <h1>Torre List</h1>
             <select className='custom-select' value={selectedTorre} onChange={handleTorreChange}>
@@ -225,7 +233,42 @@ export const NewOrdenador = () => {
                 />
               </div>
             )}
-
+<div className="os-selection-container">
+        <h2>Select your Operating System</h2>
+        <div className="os-logos">
+          <img
+            src={windowsLogo}
+            alt="Windows"
+            className={`os-logo ${selectedOS === 'windows' ? 'selected' : ''}`}
+            onClick={() => handleOSClick('windows')}
+          />
+          <img
+            src={linuxLogo}
+            alt="Linux"
+            className={`os-logo ${selectedOS === 'linux' ? 'selected' : ''}`}
+            onClick={() => handleOSClick('linux')}
+          />
+        </div>
+        {selectedOS && (
+          <div className="os-options">
+            <h3>Select a version of {selectedOS}</h3>
+            <select value={selectedOption} className='custom-select' onChange={handleOptionChange}>
+              <option value="">Select a version</option>
+              {selectedOS === 'windows'
+                ? soWindows.map((option, index) => (
+                    <option key={index} value={option}>
+                      {option}
+                    </option>
+                  ))
+                : soLinux.map((option, index) => (
+                    <option key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
+            </select>
+          </div>
+        )}
+      </div>
             {formError && <div className='error-message'>{formError}</div>} {/* Mostrar mensaje de error si hay alguno */}
             
             <button onClick={handleAddOrdenador}>Añadir Ordenador</button>
@@ -236,6 +279,7 @@ export const NewOrdenador = () => {
             </>
         )}
       </div>
+      
     </>
   );
 };

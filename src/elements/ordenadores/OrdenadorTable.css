@@ -22,3 +22,15 @@
 .ordenador-table tbody tr:hover {
   background-color: #656db48f;
 }
+.confirmation-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  font-size: 16px;
+}
