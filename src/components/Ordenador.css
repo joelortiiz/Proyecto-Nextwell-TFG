@@ -134,3 +134,153 @@
 .confirmation-message button:hover {
   background-color: #218838;
 }
+
+
+a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.container__ordenadores {
+  padding: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.h2 {
+  font-size: 24px;
+  color: #ffffff;
+}
+
+/* Form Styles */
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.form-container {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 600px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.custom-input, .custom-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #2e2e2e;
+  color: black;
+}
+
+.custom-input:focus, .custom-select:focus {
+  outline: none;
+  border-color: #6200ea;
+}
+
+.custom-torre-input {
+  margin-top: 10px;
+}
+
+.selected-torre {
+  text-align: center;
+}
+
+.selected-torre-image {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* OS Selection Styles */
+.os-selection-container {
+  margin-top: 20px;
+}
+
+.os-logos {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.os-logo {
+  width: 100px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.os-logo:hover {
+  transform: scale(1.1);
+}
+
+.os-logo.selected {
+  border: 2px solid #6200ea;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+/* Error and Confirmation Messages */
+.error-message, .confirmation-message {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.error-message {
+  background-color: #b00020;
+  color: #ffffff;
+}
+
+.confirmation-message {
+  background-color: #00c853;
+  color: #ffffff;
+}
+
+/* Button Styles */
+.add-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #6200ea;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-button:hover {
+  background-color: #3700b3;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .form-container {
+      padding: 10px;
+  }
+
+  .os-logos {
+      flex-direction: column;
+  }
+
+  .os-logo {
+      width: 80px;
+      margin-bottom: 10px;
+  }
+}

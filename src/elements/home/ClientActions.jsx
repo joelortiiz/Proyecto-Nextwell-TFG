@@ -12,14 +12,14 @@ const cardsData = [
     {
       title: 'Comprar Productos',
       description: 'Actualiza tu ordenador y dale la potencia que te mereces !',
-      image: 'https://via.placeholder.com/300x140',
+      image: 'https://via.placeholder.com/',
       link: '/page2', // Agrega el enlace para cada tarjeta
     },
     {
       title: 'Configurador de PC',
       description: 'Monta tu nuevo ordenador pieza a pieza y genera un presupuesto en minutos !',
-      image: 'https://via.placeholder.com/300x140',
-      link: '/page3', // Agrega el enlace para cada tarjeta
+      image: 'https://via.placeholder.com/',
+      link: '/Configurador-Pc', // Agrega el enlace para cada tarjeta
     },
   ];
 

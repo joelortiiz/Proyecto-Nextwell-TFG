@@ -7,6 +7,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { db } from './../../firebase/firebaseConfig';
 
 const OrdenadorTable = ({ ordenadores, setOrdenadores }) => {
+  
   const navigate = useNavigate();
   const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -41,7 +42,7 @@ const OrdenadorTable = ({ ordenadores, setOrdenadores }) => {
             <th>Nombre</th>
             <th>Procesador</th>
             <th>RAM</th>
-            <th>Disco</th>
+            <th>Disco / Ssd</th>
             <th>Tarjeta Gráfica</th>
             <th>Sistema Operativo</th>
             <th></th>
@@ -54,7 +55,7 @@ const OrdenadorTable = ({ ordenadores, setOrdenadores }) => {
                 <td>{ordenador.nombre}</td>
                 <td>{ordenador.cpu}</td>
                 <td>{ordenador.ram}</td>
-                <td>{ordenador.disco}</td>
+                <td>{ordenador.ssd}</td>
                 <td>{ordenador.gpu}</td>
                 <td>{ordenador.so}</td>
                 <td>

@@ -1,0 +1,45 @@
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .category-container {
+    margin-bottom: 20px;
+  }
+  
+  .category-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .component-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .form-container {
+      padding: 20px;
+    }
+  }
+  

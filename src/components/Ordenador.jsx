@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom';
 import { db } from './../firebase/firebaseConfig';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { Header } from '../elements/Header';
-import './Ordenador.css'; // Importa tus estilos CSS
+import './Ordenador.css'; 
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export const Ordenador = () => {
     const { id } = useParams();
@@ -46,15 +48,15 @@ export const Ordenador = () => {
             const docRef = doc(db, 'ordenadores', id);
             await updateDoc(docRef, formValues);
             console.log('Ordenador actualizado con éxito');
-            setOrdenador(formValues); // Actualizar el estado con los nuevos valores
-            setShowConfirmation(true); // Mostrar la confirmación
+            setOrdenador(formValues); 
+            setShowConfirmation(true);
         } catch (error) {
             console.error('Error al actualizar el ordenador:', error);
         }
     };
 
     const handleCloseConfirmation = () => {
-        setShowConfirmation(false); // Ocultar la confirmación al cerrar
+        setShowConfirmation(false);
     };
 
     if (loading) {
@@ -68,6 +70,20 @@ export const Ordenador = () => {
     return (
         <>
         <Header />
+        <div className='container__ordenadores'>
+        <section>
+          <article className='text-center'>
+            <div>
+              <motion.h2 className='h2'>
+                <em>Añadir un nuevo ordenador a tu </em>
+              </motion.h2>
+              <p>
+                <Link to={"/ordenadores"}>Volver a todos tus Equipos </Link>
+              </p>
+            </div>
+          </article>
+        </section>
+      </div>
         <div className="ordenador-container"> {/* Clase para estilos CSS */}
             <h2>Editar Ordenador</h2>
             <form onSubmit={handleSubmit}>

@@ -16,6 +16,7 @@ import ErrorPage from './components/Error';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { NewOrdenador } from './components/NewOrdenador';
+import { ConfigOrdenador } from './components/ConfigOrdenador';
 
 
 const Index = () => {
@@ -23,42 +24,52 @@ const Index = () => {
     <>
       <Helmet>
         <title>NextWell</title>
-			  <link rel="icon" href="./assets/images/logos/favicon.png" type="image/png"/>
-		
+        <link rel="icon" href="./assets/images/logos/favicon.png" type="image/png" />
+
       </Helmet>
       <AuthProvider>
         <BrowserRouter>
 
-            <Routes >
-              <Route path='/sign-in' element={<IniciarSesion />} />
-              <Route path='/sign-up' element={<RegistroUsuarios />} />
-              <Route path="/" element={
-                 <RutaPrivada>
-              <Navigate to="/home" />
+          <Routes >
+            <Route path='/sign-in' element={<IniciarSesion />} />
+            <Route path='/sign-up' element={<RegistroUsuarios />} />
+            <Route path="/" element={
+              <RutaPrivada>
+                <Navigate to="/home" />
               </RutaPrivada>
-              } />
-              <Route path='/home' element={
-                <RutaPrivada>
-                  <Home />
-                </RutaPrivada>
-              } />
-               <Route path='/ordenadores/' element={
-                <RutaPrivada>
-                 <Ordenadores/>
-                </RutaPrivada>
-              } /> 
-               <Route path='/ordenador/:id' element={
-                <RutaPrivada>
-                 <Ordenador/>
-                </RutaPrivada>
-              } /> 
-               <Route path='/ordenadores/newordenador' element={
-                <RutaPrivada>
-                 <NewOrdenador/>
-                </RutaPrivada>
-              } /> 
-      <Route path="*" element={<ErrorPage />} />
-            </Routes>
+            } />
+            <Route path='/home' element={
+              <RutaPrivada>
+                <Home />
+              </RutaPrivada>
+            } />
+            <Route path='/ordenadores/' element={
+              <RutaPrivada>
+                <Ordenadores />
+              </RutaPrivada>
+            } />
+            <Route path='/ordenador/:id' element={
+              <RutaPrivada>
+                <Ordenador />
+              </RutaPrivada>
+            } />
+            <Route path='/ordenadores/newordenador' element={
+              <RutaPrivada>
+                <NewOrdenador />
+              </RutaPrivada>
+            } />
+            <Route path='/Configurador-Pc' element={
+              <RutaPrivada>
+                <ConfigOrdenador />
+              </RutaPrivada>
+            } />
+            <Route path='/ordenadores/newordenador' element={
+              <RutaPrivada>
+                <NewOrdenador />
+              </RutaPrivada>
+            } />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
         </BrowserRouter>
       </AuthProvider>
 
