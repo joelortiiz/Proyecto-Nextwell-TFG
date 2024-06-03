@@ -22,7 +22,7 @@ export const ConfigOrdenador = () => {
           {key[0].tipo}
 
           <form className="form-container">
-            <select key={index} className="component-select">
+            <select key={index} className="custom-select">
               {key.map((categoria, index) => (
                 <>
                   {console.log(categoria.tipo)}
@@ -34,7 +34,7 @@ export const ConfigOrdenador = () => {
 
               ))}
             </select>
-            <select key={index} className="category-container component-select">
+            <select key={index} className="custom-select">
               {key.map((categoria, index) => (
                 <>
                   {console.log(categoria.tipo)}
@@ -45,7 +45,8 @@ export const ConfigOrdenador = () => {
                 </>
 
               ))}
-            </select><select key={index} className="category-container component-select">
+            </select>
+            <select key={index} className="custom-select">
               {key.map((categoria, index) => (
                 <>
                   {console.log(categoria.tipo)}
