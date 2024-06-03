@@ -17,6 +17,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { NewOrdenador } from './components/NewOrdenador';
 import { ConfigOrdenador } from './components/ConfigOrdenador';
+import { Compras } from './components/Compras';
 
 
 const Index = () => {
@@ -63,9 +64,9 @@ const Index = () => {
                 <ConfigOrdenador />
               </RutaPrivada>
             } />
-            <Route path='/ordenadores/newordenador' element={
+            <Route path='/User/Compras' element={
               <RutaPrivada>
-                <NewOrdenador />
+                <Compras />
               </RutaPrivada>
             } />
             <Route path="*" element={<ErrorPage />} />

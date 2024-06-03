@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; 
-import { Card, CardContent, CardMedia, Typography, Grid, Box } from '@mui/material';
+import { Card, CardMedia, Typography, Grid, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import './Card.css'
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -13,12 +13,6 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   height: 140,
 }));
 
-const StyledCardContent = styled(CardContent)(({ theme }) => ({
-    '& p': { // Estilos para los párrafos dentro del CardContent
-      textDecoration: 'none', // Quitar la decoración del texto
-      color: 'white', // Heredar el color de texto
-    },
-  }));
 
 function Cards({ cardsData }) {
   return (

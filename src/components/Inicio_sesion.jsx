@@ -2,16 +2,14 @@ import React, {useState} from 'react'
 import { Helmet } from 'react-helmet'
 import {Link, useNavigate} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import {auth, db} from '../firebase/firebaseConfig';
+import {auth} from '../firebase/firebaseConfig';
 import Alert from '../elements/Alert'
 import './Inicio_sesion.css'
 import logo from './../assets/images/logos/logo_original.jpeg'
 import { motion } from "framer-motion" 
 import googlelogo from "./../assets/images/logos/logo_google.png"
 
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { collection, setDoc } from 'firebase/firestore';
-
+import {  signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
 
@@ -179,8 +177,8 @@ export const Inicio_sesion = () => {
               </motion.div>
 
         <motion.div
-        className='container__button'>
-        <button as="button" type='submit'>Iniciar Sesion</button>
+        >
+        <button as="button" className='container__button__login' type='submit'>Iniciar Sesion</button>
         </motion.div>
         <motion.div>
         
@@ -193,7 +191,7 @@ export const Inicio_sesion = () => {
     </motion.form>
     <div>
         <Link to={"/sign-up"}>
-        <button >Registro Usuario</button>
+        <button className='container__button__register'>Registro Usuario</button>
         </Link>
           </div>
     <div onClick={loginWithGoogle}>

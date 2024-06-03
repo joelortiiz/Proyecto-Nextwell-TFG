@@ -10,11 +10,10 @@ import load from './../assets/images/carga-unscreen.gif';
 import { db } from './../firebase/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { useAtuh } from './../context/AuthContext';
-import { set } from 'firebase/database';
 
 export const ConfigOrdenador = () => {
   const componentes = useComponentes();
-
+  console.log(componentes);
   const { usuario } = useAtuh();
 
   const keyObj = Object.values(componentes);
@@ -181,6 +180,9 @@ const handleSubmit = async (e) => {
   return (
     <>
       <Header />
+      {
+        componentes.length <= 0 ? <p>Cargando...</p> : (
+        
     <main className='config__main'>
       <div className='config-ordenador-container'>
         {keyObj.map((key, index) => (
@@ -331,7 +333,8 @@ const handleSubmit = async (e) => {
         <button onClick={() => selectOptionByPrice('high')}  className='price-button'>Opción Alto Precio</button>
       </div>
     </main>
-    
+    )
+  }
 
 
     <Alert
