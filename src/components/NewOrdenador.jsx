@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Header } from '../elements/Header';
+import { Header } from '../elements/global/Header';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { db } from './../firebase/firebaseConfig';

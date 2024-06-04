@@ -3,12 +3,13 @@ import { Helmet } from 'react-helmet'
 import {Link, useNavigate} from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import {auth} from '../firebase/firebaseConfig';
-import Alert from '../elements/Alert'
+import Alert from '../elements/global/Alert'
 import './Inicio_sesion.css'
 import logo from './../assets/images/logos/logo_original.jpeg'
 import { motion } from "framer-motion" 
 import googlelogo from "./../assets/images/logos/logo_google.png"
-
+import { doc, setDoc } from "firebase/firestore";
+import { db } from './../firebase/firebaseConfig';
 import {  signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
@@ -21,33 +22,37 @@ export const Inicio_sesion = () => {
   const [estadoAlerta, changeAlertStatus] = useState(false)
   const [alert, changeAlert] = useState({})
 
+
   const loginWithGoogle = () => {
     signInWithPopup(auth, provider)
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    localStorage.setItem('userToken', token);
-
-    // The signed-in user info.
-   // const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-    navigate('/home')
-
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-
-    console.log(errorCode, " / ", errorMessage, " / ", email, " / ", credential)
-    // ...
-  });
-  }
+      .then(async (result) => {
+        // Obtener el usuario autenticado
+        const user = result.user;
+  
+        // Crear un documento en la colección "usuarios" con el ID del usuario
+        const userDocRef = doc(db, "usuarios", user.uid);
+        await setDoc(userDocRef, {
+          nombre: user.displayName,
+          email: user.email,
+          // Otros campos que queramos almacenar en el documento de usuario
+          // Por defecto, el nuevo usuario no será administrador
+          admin: false,
+          id: user.uid
+        });
+  
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        localStorage.setItem('userToken', token);
+  
+        navigate('/home');
+      })
+      .catch((error) => {
+        // Manejar errores aquí
+        console.error(error);
+      });
+  };
+  
   const handleOnChange = (e) => {
     if(e.target.name === 'email'){
       setCorreo(e.target.value)

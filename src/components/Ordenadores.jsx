@@ -1,4 +1,4 @@
-import { Header } from '../elements/Header'
+import { Header } from '../elements/global/Header'
 import { motion } from 'framer-motion'
 import { useGetOrdenadores } from './../services/hooks/useGetOrdenadores';
 import ListaOrdenadores from '../elements/ordenadores/OrdenadoresList';

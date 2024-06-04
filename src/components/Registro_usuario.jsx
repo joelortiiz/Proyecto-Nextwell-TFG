@@ -6,7 +6,7 @@ import {auth, db} from '../firebase/firebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore"; 
 import {Link, useNavigate} from 'react-router-dom'
-import Alert from '../elements/Alert';
+import Alert from '../elements/global/Alert';
 import advantages1 from "./../assets/images/advantages/customer-service-agent.png"
 import { motion } from "framer-motion"
 import logo from './../assets/images/logos/logo.jpeg'
@@ -86,6 +86,7 @@ const Registro_usuarios = () => {
         nombre: correo.split('@')[0],
         email: correo,
         isAdmin: false,
+        id: user.uid
           }) 
         console.log('Usuario creado correctamente.');
       }

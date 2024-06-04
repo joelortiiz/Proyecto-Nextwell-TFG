@@ -4,7 +4,7 @@ import { useAtuh } from '../context/AuthContext';
 import { db } from './../firebase/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import './Productos.css';
-import Alert from '../elements/Alert'
+import Alert from '../elements/global/Alert'
 import load from './../assets/images/carga-unscreen.gif';
 
 export const Productos = () => {

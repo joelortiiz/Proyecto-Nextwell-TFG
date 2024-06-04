@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import useComponentes from './../services/hooks/useGetComponents';
-import { Header } from '../elements/Header';
+import { Header } from '../elements/global/Header';
 import './ConfigOrdenador.css';
 import jsPDF from 'jspdf';
 import logo from '../assets/images/logos/Untitled design.png';
-import Alert from '../elements/Alert'
+import Alert from '../elements/global/Alert'
 import load from './../assets/images/carga-unscreen.gif';
 
 import { db } from './../firebase/firebaseConfig';

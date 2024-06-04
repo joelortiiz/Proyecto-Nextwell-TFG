@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from './../firebase/firebaseConfig';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import { Header } from '../elements/Header';
+import { Header } from '../elements/global/Header';
 import './Ordenador.css'; 
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';

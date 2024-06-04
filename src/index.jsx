@@ -18,6 +18,9 @@ import 'slick-carousel/slick/slick-theme.css';
 import { NewOrdenador } from './components/NewOrdenador';
 import { ConfigOrdenador } from './components/ConfigOrdenador';
 import { Compras } from './components/Compras';
+import { PedidosConfirmed } from './components/PedidosConfirmed';
+import { Admin } from './components/Admin';
+import { RutaAdmin } from './components/RutaAdmin';
 
 
 const Index = () => {
@@ -38,6 +41,11 @@ const Index = () => {
               <RutaPrivada>
                 <Navigate to="/home" />
               </RutaPrivada>
+            } />
+             <Route path='/Admin' element={
+              <RutaAdmin>
+                <Admin />
+              </RutaAdmin>
             } />
             <Route path='/home' element={
               <RutaPrivada>
@@ -67,6 +75,11 @@ const Index = () => {
             <Route path='/User/Compras' element={
               <RutaPrivada>
                 <Compras />
+              </RutaPrivada>
+            } />
+              <Route path='/User/Compras/Pedidos' element={
+              <RutaPrivada>
+                <PedidosConfirmed />
               </RutaPrivada>
             } />
             <Route path="*" element={<ErrorPage />} />

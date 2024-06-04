@@ -1,10 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Compras.css';
-import { Header } from '../elements/global/Header';
-import card1 from './../assets/images/cards/card_compras2.jpg';
+import React from 'react'
+import { Header } from '../elements/global/Header'
+import { Link } from 'react-router-dom'
 
-export const Compras = () => {
+export const Admin = () => {
   return (
     <>
     <Header/>
@@ -36,8 +34,7 @@ export const Compras = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
     </>
-  );
-};
-
+  )
+}

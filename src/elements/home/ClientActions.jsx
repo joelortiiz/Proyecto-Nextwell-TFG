@@ -1,5 +1,5 @@
 import React from 'react';
-import Cards from './../Card'; 
+import Cards from '../global/Card'; 
 import card1 from './../../assets/images/cards/card1.jpg'
 
 const cardsData = [

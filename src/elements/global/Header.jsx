@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import { useAtuh } from './../context/AuthContext'
+import { useAtuh } from '../../context/AuthContext'
 import '@fortawesome/fontawesome-free/css/all.css';
 import { motion } from 'framer-motion';
 import { LogOutButton } from './LogOutButton';
-import logo from './../assets/images/logos/favicon.png'
+import logo from './../../assets/images/logos/favicon.png'
 import './Header.css'
 export const Header = () => {
 

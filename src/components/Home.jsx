@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import { motion } from "framer-motion"
 import { useAtuh } from './../context/AuthContext'
-import { Header } from './../elements/Header';
+import { Header } from '../elements/global/Header';
 
 import { Container, Typography } from '@mui/material';
 import ImageCarousel from './../elements/home/ImageCarousel';
 import ClientActions from './../elements/home/ClientActions';
 import { useIsAdmin } from '../services/hooks/useIsAdmin';
 import { Productos } from './Productos';
+import { useNavigate } from 'react-router-dom';
+
 
 const images = [
 	{
-	  src: 'https://via.placeholder.com/800x400?text=Image+1',
+	  src: 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2023/05/torre-gaming-3036108.jpg?tf=3840x',
 	  text: 'Texto sobre la imagen 1'
 	},
 	{
@@ -26,10 +28,15 @@ const images = [
   ];
 
 const Home = () => {
-	const {usuario} = useAtuh();
-	const isAdmin = useIsAdmin(usuario)
-	
-	console.log(isAdmin)
+	const { usuario } = useAtuh();
+    const isAdmin = useIsAdmin(usuario);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isAdmin) {
+            navigate('/Admin');
+        }
+    }, [isAdmin, navigate]);
 	return (
 		<>
             <Header/>
