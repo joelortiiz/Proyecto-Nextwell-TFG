@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import firebase from 'firebase/app';
+// import firebase from 'firebase/app';
 import 'firebase/auth';
 import { Helmet } from 'react-helmet'
 import {auth, db} from '../firebase/firebaseConfig';

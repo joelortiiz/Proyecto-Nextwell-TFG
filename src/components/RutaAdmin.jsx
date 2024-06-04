@@ -1,6 +1,6 @@
-import React from 'react';
+// import React from 'react';
 import { useAtuh } from '../context/AuthContext';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 import { useIsAdmin } from './../services/hooks/useIsAdmin'; // Importa el hook useIsAdmin
 
 export const RutaAdmin = ({ children }) => {
