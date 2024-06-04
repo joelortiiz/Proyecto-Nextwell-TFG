@@ -9,7 +9,5 @@ export const RutaAdmin = ({ children }) => {
 
     if (usuario !== null && isAdmin) { // Verifica si el usuario está autenticado y si es administrador
         return children;
-    } else {
-        return <Navigate replace to='/home' />;
-    }
+    } 
 };
