@@ -64,6 +64,10 @@ const handleSubmit = async (e) => {
     placa: selectedPlaca,
     precioTotal: precioTotal,
     userId: usuario.uid,
+    cliente: usuario.email.split('@')[0],
+    tipo: "producto",
+      fecha: new Date().toLocaleDateString(),
+      confirmado: "F",
 };
   await addDoc(collection(db, 'cesta'), newOrdenadorDeseado);
     setLoading(false);

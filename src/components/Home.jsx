@@ -8,6 +8,7 @@ import { Container, Typography } from '@mui/material';
 import ImageCarousel from './../elements/home/ImageCarousel';
 import ClientActions from './../elements/home/ClientActions';
 import { useIsAdmin } from '../services/hooks/useIsAdmin';
+import { Productos } from './Productos';
 
 const images = [
 	{
@@ -60,6 +61,9 @@ const Home = () => {
 		<ClientActions>
 
 		</ClientActions>
+		<Container>
+			<Productos/>
+		</Container>
 			</>
 	);
 }

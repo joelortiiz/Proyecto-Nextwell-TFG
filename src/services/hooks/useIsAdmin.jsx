@@ -5,7 +5,7 @@ import { db } from './../../firebase/firebaseConfig';
 export const useIsAdmin = (usuario) => {
 
     const [user, setUser] = useState(null);
-    debugger
+    
     useEffect(() => {
         const fetchUser = async () => {
             try {
