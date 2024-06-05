@@ -21,6 +21,7 @@ import { Compras } from './components/Compras';
 import { PedidosConfirmed } from './components/PedidosConfirmed';
 import { Admin } from './components/Admin';
 import { RutaAdmin } from './components/RutaAdmin';
+import { RevisarPedidos } from './components/RevisarPedidos';
 
 
 const Index = () => {
@@ -43,6 +44,16 @@ const Index = () => {
               </RutaPrivada>
             } />
              <Route path='/Admin' element={
+              <RutaAdmin>
+                <Admin />
+              </RutaAdmin>
+            } />
+               <Route path='/Admin/revisar-pedidos' element={
+              <RutaAdmin>
+                <RevisarPedidos />
+              </RutaAdmin>
+            } />
+               <Route path='/Admin/lista-usuarios' element={
               <RutaAdmin>
                 <Admin />
               </RutaAdmin>
@@ -82,6 +93,7 @@ const Index = () => {
                 <PedidosConfirmed />
               </RutaPrivada>
             } />
+            
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>

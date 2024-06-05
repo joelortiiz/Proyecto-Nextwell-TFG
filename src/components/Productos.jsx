@@ -6,6 +6,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import './Productos.css';
 import Alert from '../elements/global/Alert'
 import load from './../assets/images/carga-unscreen.gif';
+import { Timestamp } from 'firebase/firestore';
 
 export const Productos = () => {
 
@@ -44,7 +45,7 @@ export const Productos = () => {
                   userId: usuario.uid,
                   cliente: usuario.email.split('@')[0],
                   tipo: "producto",
-                    fecha: new Date().toLocaleDateString(),
+                  fecha: Timestamp.fromDate(new Date()),
                     confirmado: "F",
               };
               await addDoc(collection(db, 'cesta'), newProducto);
@@ -56,7 +57,14 @@ export const Productos = () => {
             message: 'Compra realizada! Puedes ver tus compras en el apartado de compras.'
           })
             } catch (error) {
-                
+                console.log(error);
+                setLoading(false);
+            setConfirmarCompra(false);
+          changeAlertStatus(true)
+          changeAlert({
+            type: 'error',
+            message: 'Hubo un error al procesar su compra. Por favor, inténtelo de nuevo.'
+          })
             }
         }
        

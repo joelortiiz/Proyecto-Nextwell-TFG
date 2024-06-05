@@ -17,7 +17,9 @@
     align-items: center;
 
   }
-  
+  .panel_admin {
+    font-size: 2rem;
+  }
   .nav-item {
     float: left;
   
@@ -138,4 +140,45 @@
   height: 50px;
   border-radius: 10px;
   margin-right: 10px;
+}
+.CardContainer {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  height: 9rem;
+}
+.cajas {
+  width: 100px;
+  height: 100px;
+}
+.Card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.Card:hover {
+  transform: scale(1.05);
+}
+
+.CardTitle {
+  margin-top: 1rem;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .CardContainer {
+    grid-template-columns: 1fr;
+  }
 }
