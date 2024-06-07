@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { db } from './../firebase/firebaseConfig';
 import { useAtuh } from '../context/AuthContext';
-import { collection, onSnapshot, query, where, getDocs, Timestamp } from 'firebase/firestore';
-import { startOfToday, subDays } from 'date-fns';
+import { collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
+import { subDays } from 'date-fns';
 
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
     LinearScale,
@@ -17,8 +17,6 @@ import {
     Title,
 } from 'chart.js';
 
-// import { Chart } from 'react-chartjs-2';
-// import { useGetPedidos } from "../services/hooks/useGetPedidos";
 ChartJS.register(
     LinearScale,
     CategoryScale,
@@ -31,54 +29,80 @@ ChartJS.register(
 );
 
 export const LinesChart = () => {
+    const { usuario } = useAtuh();
+    const [pedidosData, setPedidosData] = useState([]);
+    const [pedidosMes, setPedidosMes] = useState([]);
 
-    
-        const { usuario } = useAtuh();
-        const [pedidosData, setPedidosData] = useState([]);
+    useEffect(() => {
+        const fetchPedidos = async () => {
+            try {
+                const fechaActual = new Date();
+                const pedidosPorDia = [];
 
-        useEffect(() => {
-            const fetchPedidos = async () => {
-                try {
-                    const fechaActual = new Date();
-                    const pedidosPorDia = [];
-    
-                    // Iterar sobre los últimos 7 días
-                    for (let i = 0; i < 7; i++) {
-                        // Calcular la fecha hace i días
-                        const fechaHaceNDias = subDays(fechaActual, i);
-                        const año = fechaHaceNDias.getFullYear();
-                        const mes = fechaHaceNDias.getMonth() + 1;
-                        const dia = fechaHaceNDias.getDate();
-                        const fechaFormateada = `${año}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
-    
-                        // Crear un nuevo rango de fechas para la consulta
-                        const fechaInicio = Timestamp.fromDate(subDays(fechaHaceNDias, 1));
-                        const fechaFin = Timestamp.fromDate(fechaHaceNDias);
-    
-                        // Realizar la consulta para el día actual
-                        const queryDoc = query(collection(db, 'cesta'),
-                        where('fecha', '>=', fechaInicio)
-                        , where('fecha', '<=', fechaFin))
-                        
-                        const consulta = await getDocs(queryDoc);
-                        const cantidadDocumentos = consulta.size;
-    
-                        // Agregar la cantidad de pedidos para el día actual al array
-                        pedidosPorDia.unshift(cantidadDocumentos);
-                        
-                    }
-                    setPedidosData(pedidosPorDia);
-                    console.log("Pedidos por día de la última semana:", pedidosPorDia);
-                } catch (error) {
-                    console.error('Error fetching user:', error);
+                // Iterar sobre los últimos 7 días
+                for (let i = 0; i < 7; i++) {
+                    const fechaHaceNDias = subDays(fechaActual, i);
+                    const fechaInicio = Timestamp.fromDate(subDays(fechaHaceNDias, 1));
+                    const fechaFin = Timestamp.fromDate(fechaHaceNDias);
+
+                    const queryDoc = query(
+                        collection(db, 'cesta'),
+                        where('fecha', '>=', fechaInicio),
+                        where('fecha', '<=', fechaFin)
+                    );
+
+                    const consulta = await getDocs(queryDoc);
+                    const cantidadDocumentos = consulta.size;
+                    pedidosPorDia.unshift(cantidadDocumentos);
                 }
-            };
-            fetchPedidos();
-        }, [usuario]); // Asegúrate de incluir usuario en las dependencias de useEffect si es necesario
-    ;
-    
-    var midata = {
 
+                setPedidosData(pedidosPorDia);
+                console.log("Pedidos por día de la última semana:", pedidosPorDia);
+            } catch (error) {
+                console.error('Error fetching pedidos:', error);
+            }
+        };
+
+        const fetchPedidosMes = async () => {
+            try {
+                const fechaActual = new Date();
+                const pedidosPorMes = [];
+
+                // Iterar sobre los últimos 12 meses
+                for (let i = 0; i < 12; i++) {
+                    const fechaHaceNMeses = new Date(fechaActual.getFullYear(), fechaActual.getMonth() - i, 1);
+                    const fechaInicio = new Date(fechaHaceNMeses.getFullYear(), fechaHaceNMeses.getMonth(), 1);
+                    const fechaFin = new Date(fechaHaceNMeses.getFullYear(), fechaHaceNMeses.getMonth() + 1, 0, 23, 59, 59);
+
+                    const queryDoc = query(
+                        collection(db, 'cesta'),
+                        where('fecha', '>=', Timestamp.fromDate(fechaInicio)),
+                        where('fecha', '<=', Timestamp.fromDate(fechaFin))
+                    );
+
+                    const consulta = await getDocs(queryDoc);
+                    const cantidadDocumentos = consulta.size;
+                    pedidosPorMes.unshift({
+                        mes: `${fechaHaceNMeses.getFullYear()}-${(fechaHaceNMeses.getMonth() + 1).toString().padStart(2, '0')}`,
+                        cantidad: cantidadDocumentos
+                    });
+                }
+
+                setPedidosMes(pedidosPorMes);
+                console.log("Pedidos por mes del último año:", pedidosPorMes);
+            } catch (error) {
+                console.error('Error fetching pedidos:', error);
+            }
+        };
+
+        fetchPedidos();
+        fetchPedidosMes();
+    }, [usuario]);
+
+    const pedidosMesLabels = pedidosMes.map(p => p.mes);
+    const pedidosMesData = pedidosMes.map(p => p.cantidad);
+
+    const midata = {
         labels: ['1', '2', '3', '4', '5', '6', '7'],
         datasets: [
             {
@@ -89,18 +113,39 @@ export const LinesChart = () => {
                 fill: false,
                 data: pedidosData
             }
-
         ]
     };
 
-    var misoptions = {
+    const midata2 = {
+        labels: pedidosMesLabels,
+        datasets: [
+            {
+                type: 'bar',
+                label: 'Pedidos Anuales',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                data: pedidosMesData
+            }
+        ]
+    };
+
+    const misoptions = {
         scales: {
             y: {
                 beginAtZero: true
             }
         }
-
     };
 
-    return <Line data={midata} options={misoptions} />
-}
+    return (
+        <>
+            <Line data={midata} options={misoptions} />
+
+            <h2>
+                Total de pedidos anuales
+            </h2>
+            <Bar data={midata2} options={misoptions} />
+        </>
+    );
+};
