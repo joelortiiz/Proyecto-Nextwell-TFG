@@ -199,9 +199,16 @@ export const Inicio_sesion = () => {
         <button className='container__button__register'>Registro Usuario</button>
         </Link>
           </div>
-    <div onClick={loginWithGoogle}>
-    <img src={googlelogo} alt="" />
 
+    <div className='aux__text'>
+      O también puedes
+    </div>
+    <div class="login__card__google" onClick={loginWithGoogle}>
+      
+    <button id="google-login-btn">
+    <img src={googlelogo} className='google-logo' alt="" />
+    Iniciar sesión con Google
+    </button>
 
     </div>
     </article>

@@ -2,7 +2,7 @@ body {
     background-color: #0F0B0C;
     color: white;
     max-width: 70rem;
-    
+    font-family: Nextwell;
 }
 .text-center {
     text-align: center;
@@ -20,7 +20,7 @@ body {
     width: 100%;
 
     max-width: 90rem;
-    border: 3px solid yellow;
+    max-height: none;
     box-shadow: 0px 1.25 rem 2.5rem rgba(255, 0, 0, 0.1);
     border-radius: 0.625rem;
     margin: auto;
@@ -55,6 +55,51 @@ body {
     width: 300px;
     height: 120px;
 }
+.login__card__google {
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  
+  #google-login-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.058);
+    font-family: Nextwell;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  
+  #google-login-btn:hover {
+    background-color: rgb(0, 179, 255);
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+  }
+  
+  .google-logo {
+    width: 51px;
+    height: 37px;
+    margin-right: 10px;
+  }
+  
 .form__title {
     margin: 2rem;
     font-size: 2.5rem;
@@ -70,7 +115,7 @@ body {
 
 .input {
     padding: 1rem 0;
-    font-family: 'Work Sans', sans-serif;
+    font-family:Nextwell;
     margin: 0.5rem 0;
     transition: all 0.3s ease;
     text-indent: 10%;
@@ -147,9 +192,27 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 1rem 0px;
+    font-family: Nextwell;
+
     cursor: pointer;
     transition: background-color 0.3s;
+    /* 40px */
+}
+.container__button__login:hover {
+    background-color: white;
+    border-radius: 8px ;
+    border: 3px solid rgba(0, 78, 151, 0.8);
+    color: rgb(0, 93, 193);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 1rem 0px;
+    cursor: pointer;
+    transition: all ease 0.3s;
+
     /* 40px */
 }
 .container__button__register {
@@ -161,11 +224,23 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-family: Nextwell;
+    font-size: 15px;
     margin: 4px 2px;
     cursor: pointer;
+    transition: all ease 0.3s;
+    /* 40px */
+}
+.container__button__register:hover {
+    background-color: goldenrod;
+    color: white;
+    border: 3px solid rgba(0, 0, 0, 0.553);
+
     transition: background-color 0.3s;
     /* 40px */
+}
+.aux__text {
+    margin: 0.8rem 0;
 }
 .os-selection-container {
     text-align: center;
