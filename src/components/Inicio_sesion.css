@@ -13,7 +13,6 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #0F0B0C;
-
 }
 .container__login {
     background-color: #0F0B0C;
@@ -32,13 +31,11 @@ body {
     @media(max-width: 60rem){
         max-height: none;
     }
-    
 }
 .load {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 .load__img {
     width: 120px;
@@ -65,9 +62,6 @@ body {
     text-align: center;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   }
-  
-
-  
   #google-login-btn {
     display: flex;
     justify-content: center;
@@ -85,7 +79,6 @@ body {
     transition: background-color 0.3s ease;
     transition: all 0.3s ease;
   }
-  
   #google-login-btn:hover {
     background-color: rgb(0, 179, 255);
     color: white;
@@ -93,20 +86,17 @@ body {
     transform: scale(1.1);
     transition: all 0.3s ease;
   }
-  
   .google-logo {
     width: 51px;
     height: 37px;
     margin-right: 10px;
   }
-  
 .form__title {
     margin: 2rem;
     font-size: 2.5rem;
 }
 .form {
     padding: 0 2.5rem;
-    /* 40px */
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -120,15 +110,12 @@ body {
     transition: all 0.3s ease;
     text-indent: 10%;
     border-radius: 10px;
-
 }
 .input:focus {
     animation-name: traslade-indet;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
     transition: all ease 0.3s;
-
-
 }
 @keyframes traslade-indet {
     0% {
@@ -137,22 +124,17 @@ body {
     100% {
         text-indent: 10%;
     }
-    
 }
-
 .input::placeholder {
     text-indent: 30%;
     color: rgba(0, 0, 0, 0.45);
     transition: all ease 0.3s;
- 
 }
 .input:focus::placeholder {
     text-indent: 10%;
     color: rgba(0, 0, 0, 0.45);
     transition: all ease 0.3s;
-
 }
-
 .section {
     display: flex;
     justify-content: space-around;
@@ -171,16 +153,13 @@ body {
     align-items: center;
 }
 @media screen and (min-width: 50rem) {
-    
     .article2 {
         display: flex;
     }
     .logo2 {
-      
         width: 500px;
         height: 220px;
     }
-    
 }
 .container__button__login {
     background-color: #008CBA;
@@ -194,10 +173,8 @@ body {
     font-size: 16px;
     margin: 1rem 0px;
     font-family: Nextwell;
-
     cursor: pointer;
     transition: background-color 0.3s;
-    /* 40px */
 }
 .container__button__login:hover {
     background-color: white;
@@ -212,8 +189,6 @@ body {
     margin: 1rem 0px;
     cursor: pointer;
     transition: all ease 0.3s;
-
-    /* 40px */
 }
 .container__button__register {
     background-color: #38912c;
@@ -229,15 +204,12 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     transition: all ease 0.3s;
-    /* 40px */
 }
 .container__button__register:hover {
     background-color: goldenrod;
     color: white;
     border: 3px solid rgba(0, 0, 0, 0.553);
-
     transition: background-color 0.3s;
-    /* 40px */
 }
 .aux__text {
     margin: 0.8rem 0;
@@ -271,4 +243,147 @@ body {
   .os-options {
     margin-top: 20px;
   }
+ .pdf {
+     width: 50px;
+ }
+.font {
+    font-family: Nextwell;
+}
+ .export__button {
+    background-color: rgba(255, 255, 255, 0.17);
+    
+ }
+ .export__button:hover {
+    background-color: #007bff;
+ }
+ .pfp__lista {
+    width: 100px;
+    height: 100px;
+ }
+ .container__lista {
+     padding: 20px;
+ }
  
+ .grid-container {
+     display: grid;
+     grid-template-columns: 1fr; /* Cada tarjeta ocupará todo el ancho disponible */
+     gap: 20px;
+ }
+ 
+ .card__user {
+     border: 1px solid #ddd;
+     border-radius: 8px;
+     overflow: hidden;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+     display: flex;
+     flex-direction: row; /* Ajustamos la dirección para que los elementos estén en línea */
+     align-items: center;
+     padding: 10px;
+     background-color: gray;
+     width: 100%; /* Ocupa todo el ancho del contenedor */
+     box-sizing: border-box; /* Incluye el padding y border en el ancho total */
+ }
+ 
+ .card-foto {
+     flex: 0 0 auto; /* La foto no se estirará */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-right: 10px; /* Espacio entre la foto y el contenido */
+ }
+ 
+ .card-foto img {
+     max-width: 100px;
+     border-radius: 50%;
+ }
+ 
+ .card__contenido__admin {
+     flex: 1; 
+     padding: 10px;
+     text-align: left;
+  }
+ .card__contenido__cliente {
+    flex: 1; 
+     padding: 10px;
+     text-align: left;
+ }
+ .card-boton {
+     flex: 0 0 auto; 
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 10px;
+ }
+.button__isAdmin {
+    width: 100px;
+    background-color: orange;
+    cursor: not-allowed;
+    font-family: Nextwell;
+}
+.button__isClient {
+    width: 100px;
+    background-color: #38912c;
+    font-family: Nextwell;
+
+}
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-inner {
+    background-color: rgb(0, 145, 242);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.close {
+    background-color: rgb(255, 98, 0);
+    margin-left: 10px;
+}
+.header-container {
+    background-color: #000dff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.header-container p {
+    margin-bottom: 10px;
+}
+
+.titulo-lista {
+    font-size: 24px;
+    color: #333;
+}
+
+.CardAdmin__Container {
+    display: flex;
+    justify-content: space-around;
+    margin: 3rem;
+}

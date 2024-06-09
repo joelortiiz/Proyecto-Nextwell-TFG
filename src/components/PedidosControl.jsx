@@ -69,7 +69,7 @@ export const LinesChart = () => {
                 const pedidosPorMes = [];
 
                 // Iterar sobre los últimos 12 meses
-                for (let i = 0; i < 12; i++) {
+                for (let i = 0; i < 7; i++) {
                     const fechaHaceNMeses = new Date(fechaActual.getFullYear(), fechaActual.getMonth() - i, 1);
                     const fechaInicio = new Date(fechaHaceNMeses.getFullYear(), fechaHaceNMeses.getMonth(), 1);
                     const fechaFin = new Date(fechaHaceNMeses.getFullYear(), fechaHaceNMeses.getMonth() + 1, 0, 23, 59, 59);
@@ -107,21 +107,15 @@ export const LinesChart = () => {
         datasets: [
             {
                 type: 'line',
-                label: 'Pedidos totales del dia',
+                label: 'Total dia',
                 borderColor: 'greenyellow',
                 borderWidth: 2,
                 fill: false,
                 data: pedidosData
-            }
-        ]
-    };
-
-    const midata2 = {
-        labels: pedidosMesLabels,
-        datasets: [
+            },
             {
                 type: 'bar',
-                label: 'Pedidos Anuales',
+                label: 'Total mes',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 2,
@@ -129,6 +123,8 @@ export const LinesChart = () => {
             }
         ]
     };
+
+ 
 
     const misoptions = {
         scales: {
@@ -140,12 +136,18 @@ export const LinesChart = () => {
 
     return (
         <>
-            <Line data={midata} options={misoptions} />
-
-            <h2>
-                Total de pedidos anuales
+          <h2>
+                Control de pedidos
             </h2>
-            <Bar data={midata2} options={misoptions} />
+            <Line data={midata} options={misoptions} />
+            <p>
+               
+               <small>
+               Cantidad de pedidos de los ultimos 7 días y 7 meses respectivamente*
+
+               </small>
+            </p>
+          
         </>
     );
 };

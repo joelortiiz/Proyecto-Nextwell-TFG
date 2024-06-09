@@ -22,6 +22,7 @@ import { PedidosConfirmed } from './components/PedidosConfirmed';
 import { Admin } from './components/Admin';
 import { RutaAdmin } from './components/RutaAdmin';
 import { RevisarPedidos } from './components/RevisarPedidos';
+import { ListaUsuarios } from './components/ListaUsuarios';
 
 
 const Index = () => {
@@ -55,7 +56,7 @@ const Index = () => {
             } />
                <Route path='/Admin/lista-usuarios' element={
               <RutaAdmin>
-                <Admin />
+                <ListaUsuarios />
               </RutaAdmin>
             } />
             <Route path='/home' element={

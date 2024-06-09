@@ -1,15 +1,13 @@
 import  {useState, useEffect} from 'react'
 import { db } from './../../firebase/firebaseConfig';
-import { useAtuh } from '../../context/AuthContext';
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { collection, onSnapshot, query } from 'firebase/firestore';
 
-export const useGetPedidosConfirmed = () => {
-    const {usuario} = useAtuh();
+export const useGetUsuarios = () => {
     const [pedidos, setOrdenadores] = useState([]);
 
         useEffect(() => {
             
-            const consulta = query(collection(db, 'pedidos_completados'), where('adminId', '==', usuario.uid))
+            const consulta = query(collection(db, 'usuarios'))
 
             const unsuscribe = onSnapshot(consulta, (snapshot) => {
                
@@ -22,6 +20,6 @@ export const useGetPedidosConfirmed = () => {
             )
             })
             return unsuscribe
-        }, [usuario])
+        }, [])
   return [pedidos]
 }

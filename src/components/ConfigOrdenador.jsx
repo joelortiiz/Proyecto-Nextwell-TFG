@@ -158,28 +158,29 @@ const handleSubmit = async (e) => {
     const imgWidth = 35;
     const imgHeight = 35;
     pdf.addImage(logo, 'PNG', 10, 10, imgWidth, imgHeight);
-
+  
     // Agrega el título
     pdf.setFontSize(20);
     pdf.text('Presupuesto de Configuración de Ordenador', 70, 40);
-
+  
     // Agrega las selecciones de componentes con precios
     pdf.setFontSize(11);
     pdf.text(20, 50, 'Componentes Seleccionados:');
     pdf.text(20, 60, `Tarjeta Gráfica: ${selectedGpu} - Precio: ${precioGpu} €`);
     pdf.text(20, 70, `CPU: ${selectedCpu} - Precio: ${precioCpu} €`);
     pdf.text(20, 80, `SSD: ${selectedSsd} - Precio: ${precioSsd} €`);
-    pdf.text(20, 100, `Placa Base : ${selectedPlaca} - Precio: ${precioPlaca} €`);
-    pdf.text(20, 90, `Memoria RAM: ${selectedRam} - Precio: ${precioRam} €`);
-    pdf.text(20, 100, `Torre: ${selectedTorre} - Precio: ${precioTorre} €`);
-
+    pdf.text(20, 90, `Placa Base : ${selectedPlaca} - Precio: ${precioPlaca} €`);
+    pdf.text(20, 100, `Memoria RAM: ${selectedRam} - Precio: ${precioRam} €`);
+    pdf.text(20, 110, `Torre: ${selectedTorre} - Precio: ${precioTorre} €`);
+  
     // Agrega el precio total
     pdf.setFontSize(16);
-    pdf.text(20, 120, `Precio Total: ${precioTotal.toFixed(2)} €`);
-
+    pdf.text(20, 130, `Precio Total: ${precioTotal.toFixed(2)} €`);
+  
     // Guarda el archivo PDF
     pdf.save('presupuesto_ordenador.pdf');
   };
+  
 
   return (
     <>
