@@ -23,6 +23,8 @@ import { Admin } from './components/Admin';
 import { RutaAdmin } from './components/RutaAdmin';
 import { RevisarPedidos } from './components/RevisarPedidos';
 import { ListaUsuarios } from './components/ListaUsuarios';
+import ContactForm from './components/Contacto';
+import { ListaPedidosConfirmedNotConfirmed } from './elements/pedidos/ListaPedidosNotConfirmed';
 
 
 const Index = () => {
@@ -64,6 +66,7 @@ const Index = () => {
                 <Home />
               </RutaPrivada>
             } />
+
             <Route path='/ordenadores/' element={
               <RutaPrivada>
                 <Ordenadores />
@@ -89,12 +92,21 @@ const Index = () => {
                 <Compras />
               </RutaPrivada>
             } />
+             <Route path='/User/contacto' element={
+              <RutaPrivada>
+                <ContactForm />
+              </RutaPrivada>
+            } />
               <Route path='/User/Compras/Pedidos' element={
               <RutaPrivada>
                 <PedidosConfirmed />
               </RutaPrivada>
             } />
-            
+              <Route path='/User/Compras/En-Curso' element={
+              <RutaPrivada>
+                <ListaPedidosConfirmedNotConfirmed />
+              </RutaPrivada>
+            } />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>

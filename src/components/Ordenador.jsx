@@ -6,6 +6,7 @@ import { Header } from '../elements/global/Header';
 import './Ordenador.css'; 
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import Footer from '../elements/global/Footer';
 
 export const Ordenador = () => {
     const { id } = useParams();
@@ -70,8 +71,8 @@ export const Ordenador = () => {
     return (
         <>
         <Header />
-        <div className='container__ordenadores'>
-        <section>
+        <div className=''>
+        <section className='container__ordenadores'>
           <article className='text-center'>
             <div>
               <motion.h2 className='h2'>
@@ -84,7 +85,7 @@ export const Ordenador = () => {
           </article>
         </section>
       </div>
-        <div className="ordenador-container"> {/* Clase para estilos CSS */}
+        <div className="ordenador-container"> 
             <h2>Editar Ordenador</h2>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -133,6 +134,7 @@ export const Ordenador = () => {
                 </div>
             )}
         </div>
+        <Footer/>
         </>
     );
 };

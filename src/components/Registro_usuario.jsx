@@ -7,7 +7,6 @@ import {createUserWithEmailAndPassword} from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore"; 
 import {Link, useNavigate} from 'react-router-dom'
 import Alert from '../elements/global/Alert';
-import advantages1 from "./../assets/images/advantages/customer-service-agent.png"
 import { motion } from "framer-motion"
 import logo from './../assets/images/logos/logo.jpeg'
 
@@ -202,22 +201,18 @@ const Registro_usuarios = () => {
     
        <motion.div
        className='container__button'>
-       <button as="button" type='submit' >Create Account !</button>
+       <button className='container__button__login' type='submit' >Create Account !</button>
        </motion.div>
        <motion.div>
        </motion.div>
    </motion.form>
    <div>
         <Link to={"/sign-in"}>
-        <button >Alredy have an account? Sign in !</button>
+        <button className='container__button__register' >Alredy have an account? Sign in !</button>
         </Link>
           </div>
           </article>
-      <article className='article2'>
-
-<img src={advantages1} className='' alt="" />
-
-</article>
+      
 </section>
 </main>
 

@@ -1,0 +1,54 @@
+.contact-form-container {
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 4rem;
+}
+.white {
+    color: white;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.success-message {
+    color: green;
+    margin-top: 15px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 15px;
+}

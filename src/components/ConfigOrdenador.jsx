@@ -10,6 +10,7 @@ import load from './../assets/images/carga-unscreen.gif';
 import { db } from './../firebase/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { useAtuh } from './../context/AuthContext';
+import Footer from '../elements/global/Footer';
 
 export const ConfigOrdenador = () => {
   const componentes = useComponentes();
@@ -348,6 +349,7 @@ const handleSubmit = async (e) => {
       statusAlert={estadoAlerta}
       changeAlert={changeAlertStatus}
       />
+      <Footer/>
     </>
   );
 };

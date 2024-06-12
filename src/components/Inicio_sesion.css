@@ -3,6 +3,7 @@ body {
     color: white;
     max-width: 70rem;
     font-family: Nextwell;
+      box-sizing: border-box;
 }
 .text-center {
     text-align: center;
@@ -14,6 +15,9 @@ body {
     align-items: center;
     background-color: #0F0B0C;
 }
+.button__inicio {
+    margin-top: 2rem;
+  }
 .container__login {
     background-color: #0F0B0C;
     width: 100%;
@@ -387,3 +391,5 @@ body {
     justify-content: space-around;
     margin: 3rem;
 }
+
+

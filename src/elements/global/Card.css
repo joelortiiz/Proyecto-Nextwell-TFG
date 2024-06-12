@@ -4,5 +4,77 @@
         
 }
 
-.a {
+.d-flex {
+    display: flex;
 }
+.client__container {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clientcard {
+    margin: 1rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 300px;
+    height: 450px;
+    transition: transform 0.3s ease;
+}
+
+.clientcard:hover {
+    transform: scale(1.05);
+}
+
+.clientcard-image {
+    width: 100%;
+    height: auto;
+}
+
+.clientcard-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.clientcard-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.clientcard-description {
+    font-size: 1em;
+    color: #777;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .clientcard {
+        max-width: 90%;
+    }
+
+    .clientcard-title {
+        font-size: 1.2em;
+    }
+
+    .clientcard-description {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .clientcard {
+        max-width: 100%;
+    }
+
+    .clientcard-title {
+        font-size: 1em;
+    }
+
+    .clientcard-description {
+        font-size: 0.8em;
+    }
+}
+

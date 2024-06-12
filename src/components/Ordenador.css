@@ -28,17 +28,6 @@
     color: #333;
   }
   
-  /* Flecha personalizada para el select */
-  .select-container::after {
-    content: '▼';
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    font-size: 14px;
-    color: #666;
-  }
   .custom-select {
     width: 100%;
     padding: 10px;
@@ -62,6 +51,10 @@
   /* Ordenador.css */
 
 .ordenador-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 3rem;
   max-width: 600px;
   margin-top: 2rem;
   padding: 20px;
@@ -103,6 +96,7 @@
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  font-family: Nextwell;
 }
 
 .ordenador-container button:hover {
@@ -137,7 +131,7 @@
 
 
 a {
-  color: #ffffff;
+  color: #acacac;
   text-decoration: underline;
 }
 
@@ -146,6 +140,9 @@ a:hover {
 }
 
 .container__ordenadores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
 }
 
@@ -248,7 +245,7 @@ a:hover {
 }
 
 .confirmation-message {
-  background-color: #00c853;
+  background-color: #304e3d;
   color: #ffffff;
 }
 

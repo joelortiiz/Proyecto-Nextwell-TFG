@@ -1,15 +1,17 @@
 import { Header } from '../elements/global/Header'
 import { motion } from 'framer-motion'
-import { useGetPedidosConfirmed } from './../services/hooks/useGetPedidosConfirmed';
 import {ListaPedidos} from '../elements/pedidos/ListaPedidos';
 import { HaveNoOrdenadores } from '../elements/ordenadores/HaveNoOrdenadores';
 import { Link } from 'react-router-dom';
 import React from 'react';
+import Footer from '../elements/global/Footer';
+import { useGetPedidosConfirmedUser } from '../services/hooks/useGetPedidosConfirmUser';
+import { ListaPedidosConfirmed } from '../elements/pedidos/ListaPedidosConfirmed';
 
 export const PedidosConfirmed = () => {
 
  
-    const pedidos = useGetPedidosConfirmed();
+    const pedidos = useGetPedidosConfirmedUser();
     console.log(pedidos);
     return (
         <>
@@ -21,7 +23,7 @@ export const PedidosConfirmed = () => {
                         <motion.h2
                             className='h2'
                             >
-                           <em>Estos son tus equipos registrados</em> 
+                           <em>Estos son tus pedidos</em> 
                         </motion.h2>
                         <p >
                         <Link to={"/ordenadores/newordenador"}> ¿Quieres añadir un nuevo equipo ? </Link>
@@ -31,14 +33,14 @@ export const PedidosConfirmed = () => {
 
                     </article>
                     {pedidos ? (
-       <ListaPedidos pedidos={pedidos} />
+       <ListaPedidosConfirmed pedidos={pedidos} />
       ) : (
         <HaveNoOrdenadores />
       )}
                 </section>
 
             </div>
-         
+            <Footer/>
         </>
     )
 }

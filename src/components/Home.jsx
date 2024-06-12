@@ -10,20 +10,23 @@ import ClientActions from './../elements/home/ClientActions';
 import { useIsAdmin } from '../services/hooks/useIsAdmin';
 import { Productos } from './Productos';
 import { useNavigate } from 'react-router-dom';
-
+import setup3 from './../assets/images/productos/setup2.jpg'
+import setup1 from './../assets/images/productos/setup1 (1).jpg'
+import setup2 from './../assets/images/productos/setup3.jpg'
+import Footer from './../elements/global/Footer';
 
 const images = [
 	{
-	  src: 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2023/05/torre-gaming-3036108.jpg?tf=3840x',
-	  text: 'Texto sobre la imagen 1'
+	  src: setup1,
+	  text: 'El Set-up de tus sueños a tu alcance'
 	},
 	{
-	  src: 'https://via.placeholder.com/800x400?text=Image+2',
-	  text: 'Texto sobre la imagen 2'
+	  src: setup2,
+	  text: 'Todos tus equipos en el mismo escritorio'
 	},
 	{
-	  src: 'https://via.placeholder.com/800x400?text=Image+3',
-	  text: 'Texto sobre la imagen 3'
+	  src: setup3,
+	  text: ''
 	},
   ];
 
@@ -60,17 +63,14 @@ const Home = () => {
 			)}
 			
 			<Container>
-      <Typography variant="h4" align="center" gutterBottom>
-        Image Carousel with Material-UI
-      </Typography>
+   
       <ImageCarousel images={images} />
     </Container>
-		<ClientActions>
-
-		</ClientActions>
+		<ClientActions/>
 		<Container>
 			<Productos/>
 		</Container>
+		<Footer/>
 			</>
 	);
 }

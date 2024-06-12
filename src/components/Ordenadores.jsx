@@ -5,6 +5,7 @@ import ListaOrdenadores from '../elements/ordenadores/OrdenadoresList';
 import { HaveNoOrdenadores } from '../elements/ordenadores/HaveNoOrdenadores';
 import { Link } from 'react-router-dom';
 import React from 'react';
+import Footer from '../elements/global/Footer';
 
 export const Ordenadores = (userId) => {
 
@@ -38,7 +39,7 @@ export const Ordenadores = (userId) => {
                 </section>
 
             </div>
-         
+         <Footer/>
         </>
     )
 }
