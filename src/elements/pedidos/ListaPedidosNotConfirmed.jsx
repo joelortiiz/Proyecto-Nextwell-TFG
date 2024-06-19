@@ -9,7 +9,7 @@ export const ListaPedidosConfirmedNotConfirmed = () => {
 
   const formatDate = (timestamp) => {
     const date = timestamp.toDate();
-    return date.toLocaleDateString(); // Puedes personalizar el formato aquí
+    return date.toLocaleDateString(); 
   };
 
   return (

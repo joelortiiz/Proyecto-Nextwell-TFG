@@ -53,9 +53,9 @@
 .ordenador-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   margin: 3rem;
-  max-width: 600px;
   margin-top: 2rem;
   padding: 20px;
   border: 1px solid #ccc;
@@ -70,6 +70,7 @@
 }
 
 .ordenador-container form {
+  max-width: 400px;
   margin-bottom: 20px;
   
 }
@@ -182,7 +183,7 @@ a:hover {
   border: 1px solid #333;
   border-radius: 4px;
   background-color: #2e2e2e;
-  color: black;
+  color: rgb(90, 90, 90);
 }
 
 .custom-input:focus, .custom-select:focus {

@@ -12,7 +12,6 @@
 label {
     display: block;
     margin-bottom: 5px;
-    color: #333;
 }
 
 input, textarea {
@@ -31,7 +30,6 @@ textarea {
 button {
     width: 100%;
     padding: 10px;
-    color: #fff;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -40,7 +38,7 @@ button {
 }
 
 button:hover {
-    background-color: #555;
+    background-color: #009488;
 }
 
 .success-message {

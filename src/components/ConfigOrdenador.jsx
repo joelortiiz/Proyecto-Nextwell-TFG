@@ -8,7 +8,7 @@ import Alert from '../elements/global/Alert'
 import load from './../assets/images/carga-unscreen.gif';
 
 import { db } from './../firebase/firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { useAtuh } from './../context/AuthContext';
 import Footer from '../elements/global/Footer';
 
@@ -43,42 +43,91 @@ export const ConfigOrdenador = () => {
     setPrecioTotal(precioGpu + precioCpu + precioSsd + precioRam + precioTorre + precioPlaca);
   }, [precioGpu, precioCpu, precioSsd, precioRam, precioTorre, precioPlaca]);
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  changeAlertStatus(false)
-  changeAlert({})
-  if (!selectedGpu || !selectedCpu || !selectedSsd || (!selectedTorre && selectedTorre === '') || (selectedTorre === '' )) {
-    changeAlertStatus(true)
-    changeAlert({
-      type: 'error',
-      message: 'Debes seleccionar todos los componentes para enviar el formulario.'
-    })
-    return;
-} else {
-  setLoading(true);
-  const newOrdenadorDeseado = {
-    gpu: selectedGpu,
-    cpu: selectedCpu,
-    ram: selectedRam,
-    ssd: selectedSsd,
-    torre: selectedTorre,
-    placa: selectedPlaca,
-    precioTotal: precioTotal,
-    userId: usuario.uid,
-    cliente: usuario.email.split('@')[0],
-    tipo: "producto",
-      fecha: new Date().toLocaleDateString(),
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    changeAlertStatus(false);
+    changeAlert({});
+
+    if (!selectedGpu) {
+      changeAlertStatus(true);
+      changeAlert({
+        type: 'error',
+        message: 'Debes seleccionar una tarjeta gráfica.'
+      });
+      return;
+    }
+
+    if (!selectedCpu) {
+      changeAlertStatus(true);
+      changeAlert({
+        type: 'error',
+        message: 'Debes seleccionar una CPU.'
+      });
+      return;
+    }
+
+    if (!selectedSsd) {
+      changeAlertStatus(true);
+      changeAlert({
+        type: 'error',
+        message: 'Debes seleccionar un SSD.'
+      });
+      return;
+    }
+
+    if (!selectedTorre) {
+      changeAlertStatus(true);
+      changeAlert({
+        type: 'error',
+        message: 'Debes seleccionar una Torre.'
+      });
+      return;
+    }
+
+    if (!selectedRam) {
+      changeAlertStatus(true);
+      changeAlert({
+        type: 'error',
+        message: 'Debes seleccionar una Memoria RAM.'
+      });
+      return;
+    }
+
+    if (!selectedPlaca) {
+      changeAlertStatus(true);
+      changeAlert({
+        type: 'error',
+        message: 'Debes seleccionar una Placa Base.'
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    const newOrdenadorDeseado = {
+      gpu: selectedGpu,
+      cpu: selectedCpu,
+      ram: selectedRam,
+      ssd: selectedSsd,
+      torre: selectedTorre,
+      placa: selectedPlaca,
+      precioTotal: precioTotal,
+      userId: usuario.uid,
+      cliente: usuario.email.split('@')[0],
+      tipo: "producto",
+      fecha: Timestamp.fromDate(new Date()),
       confirmado: "F",
-};
-  await addDoc(collection(db, 'cesta'), newOrdenadorDeseado);
+    };
+
+    await addDoc(collection(db, 'cesta'), newOrdenadorDeseado);
     setLoading(false);
-  changeAlertStatus(true)
-  changeAlert({
-    type: 'exito',
-    message: 'Se ha guardado a tu Cesta de deseados!'
-  })
-}
-};
+    changeAlertStatus(true);
+    changeAlert({
+      type: 'exito',
+      message: 'Se ha guardado a tu Cesta de deseados!'
+    });
+
+  };
 
 
   const getComponentByPrice = (type, highest = false) => {
@@ -97,12 +146,12 @@ const handleSubmit = async (e) => {
     const medianIndex = Math.floor(sortedComponents.length / 2);
     return sortedComponents[medianIndex];
   };
-  
+
 
   const selectOptionByPrice = (type) => {
     let gpu, cpu, ssd, ram, torre, placa;
 
-    switch(type) {
+    switch (type) {
       case 'low':
         gpu = getComponentByPrice('Tarjeta Gráfica');
         cpu = getComponentByPrice('CPU');
@@ -145,211 +194,211 @@ const handleSubmit = async (e) => {
     setSelectedPlaca(placa.nombre);
     setPrecioPlaca(placa.precio);
 
-       // Aplicar animación
-       setAnimationClass('animate');
-       setTimeout(() => {
-         setAnimationClass('');
-       }, 1000); // Duración de la animación en milisegundos
+    // Aplicar animación
+    setAnimationClass('animate');
+    setTimeout(() => {
+      setAnimationClass('');
+    }, 1000); // Duración de la animación en milisegundos
   };
-  
+
   const generatePDF = () => {
     const pdf = new jsPDF();
-    
+
     // Agrega el logo
     const imgWidth = 35;
     const imgHeight = 35;
-    pdf.addImage(logo, 'PNG', 10, 10, imgWidth, imgHeight);
-  
+    pdf.addImage(logo, 'PNG', 10, 0, imgWidth, imgHeight);
+
     // Agrega el título
     pdf.setFontSize(20);
-    pdf.text('Presupuesto de Configuración de Ordenador', 70, 40);
-  
+    pdf.text('Presupuesto de Configuración de Ordenador', 60, 40);
+
     // Agrega las selecciones de componentes con precios
     pdf.setFontSize(11);
-    pdf.text(20, 50, 'Componentes Seleccionados:');
+    pdf.text(20, 30, 'Componentes Seleccionados:');
     pdf.text(20, 60, `Tarjeta Gráfica: ${selectedGpu} - Precio: ${precioGpu} €`);
     pdf.text(20, 70, `CPU: ${selectedCpu} - Precio: ${precioCpu} €`);
     pdf.text(20, 80, `SSD: ${selectedSsd} - Precio: ${precioSsd} €`);
     pdf.text(20, 90, `Placa Base : ${selectedPlaca} - Precio: ${precioPlaca} €`);
     pdf.text(20, 100, `Memoria RAM: ${selectedRam} - Precio: ${precioRam} €`);
     pdf.text(20, 110, `Torre: ${selectedTorre} - Precio: ${precioTorre} €`);
-  
+
     // Agrega el precio total
     pdf.setFontSize(16);
     pdf.text(20, 130, `Precio Total: ${precioTotal.toFixed(2)} €`);
-  
+
     // Guarda el archivo PDF
     pdf.save('presupuesto_ordenador.pdf');
   };
-  
+
 
   return (
     <>
       <Header />
       {
         componentes.length <= 0 ? <p>Cargando...</p> : (
-        
-    <main className='config__main'>
-      <div className='config-ordenador-container'>
-        {keyObj.map((key, index) => (
-          <div className='category-container' key={index}>
-            <form className="form-container" onSubmit={handleSubmit}>
-              <div>
-                <h2>CPU</h2>
-                <select 
-                   className={`custom-select ${!selectedCpu ? 'error' : ''}`} 
-                  value={selectedCpu}
-                  onChange={(e) => {
-                    const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
-                    setSelectedCpu(e.target.value);
-                    setPrecioCpu(selectedOption ? selectedOption.precio : 0);
-                  }}
-                >
-                     <option value="">Selecciona una CPU</option>
-                  {key.map((categoria, idx) => (
-                    categoria.tipo === "CPU" ? 
-                      <option key={idx} value={categoria.nombre}>
-                        {categoria.nombre} - ${categoria.precio}
-                      </option>
-                    : null
-                  ))}
-                </select>
 
-                <h2>Torres</h2>
-                <select 
-                   className={`custom-select ${!selectedCpu ? 'error' : ''}`} 
-                  value={selectedTorre}
-                  onChange={(e) => {
-                    const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
-                    setSelectedTorre(e.target.value);
-                    setPrecioTorre(selectedOption ? selectedOption.precio : 0);
-                  }}
-                >
-                     <option value="">Selecciona una Torre</option>
-                  {key.map((categoria, idx) => (
-                    categoria.tipo === "Torre" ? 
-                      <option key={idx} value={categoria.nombre}>
-                        {categoria.nombre} - ${categoria.precio}
-                      </option>
-                    : null
-                  ))}
-                </select>
+          <main className='config__main'>
+            <div className='config-ordenador-container'>
+              {keyObj.map((key, index) => (
+                <div className='category-container' key={index}>
+                  <form className="form-container" onSubmit={handleSubmit}>
+                    <div>
+                      <h2>CPU</h2>
+                      <select
+                        className={`custom-select ${!selectedCpu ? 'error' : ''}`}
+                        value={selectedCpu}
+                        onChange={(e) => {
+                          const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
+                          setSelectedCpu(e.target.value);
+                          setPrecioCpu(selectedOption ? selectedOption.precio : 0);
+                        }}
+                      >
+                        <option value="">Selecciona una CPU</option>
+                        {key.map((categoria, idx) => (
+                          categoria.tipo === "CPU" ?
+                            <option key={idx} value={categoria.nombre}>
+                              {categoria.nombre} - ${categoria.precio}
+                            </option>
+                            : null
+                        ))}
+                      </select>
 
-                <h2>Tarjetas Gráficas</h2>
-                <select 
-                   className={`custom-select ${!selectedCpu ? 'error' : ''}`} 
-                  value={selectedGpu}
-                  onChange={(e) => {
-                    const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
-                    setSelectedGpu(e.target.value);
-                    setPrecioGpu(selectedOption ? selectedOption.precio : 0);
-                  }}
-                >
-                     <option value="">Selecciona una Tarjeta Gráfica</option>
-                  {key.map((categoria, idx) => (
-                    categoria.tipo === "Tarjeta Gráfica" ? 
-                      <option key={idx} value={categoria.nombre}>
-                        {categoria.nombre} - ${categoria.precio}
-                      </option>
-                    : null
-                  ))}
-                </select>
+                      <h2>Torres</h2>
+                      <select
+                        className={`custom-select ${!selectedTorre ? 'error' : ''}`}
+                        value={selectedTorre}
+                        onChange={(e) => {
+                          const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
+                          setSelectedTorre(e.target.value);
+                          setPrecioTorre(selectedOption ? selectedOption.precio : 0);
+                        }}
+                      >
+                        <option value="">Selecciona una Torre</option>
+                        {key.map((categoria, idx) => (
+                          categoria.tipo === "Torre" ?
+                            <option key={idx} value={categoria.nombre}>
+                              {categoria.nombre} - ${categoria.precio}
+                            </option>
+                            : null
+                        ))}
+                      </select>
 
-                <h2>SSD</h2>
-                <select 
-                   className={`custom-select ${!selectedCpu ? 'error' : ''}`} 
-                  value={selectedSsd}
-                  onChange={(e) => {
-                    const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
-                    setSelectedSsd(e.target.value);
-                    setPrecioSsd(selectedOption ? selectedOption.precio : 0);
-                  }}
-                >
-                     <option value="">Selecciona un SSD</option>
-                  {key.map((categoria, idx) => (
-                    categoria.tipo === "SSD" ? 
-                      <option key={idx} value={categoria.nombre}>
-                        {categoria.nombre} - ${categoria.precio}
-                      </option>
-                    : null
-                  ))}
-                </select>
-              </div>
+                      <h2>Tarjetas Gráficas</h2>
+                      <select
+                        className={`custom-select ${!selectedGpu ? 'error' : ''}`}
+                        value={selectedGpu}
+                        onChange={(e) => {
+                          const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
+                          setSelectedGpu(e.target.value);
+                          setPrecioGpu(selectedOption ? selectedOption.precio : 0);
+                        }}
+                      >
+                        <option value="">Selecciona una Tarjeta Gráfica</option>
+                        {key.map((categoria, idx) => (
+                          categoria.tipo === "Tarjeta Gráfica" ?
+                            <option key={idx} value={categoria.nombre}>
+                              {categoria.nombre} - ${categoria.precio}
+                            </option>
+                            : null
+                        ))}
+                      </select>
 
-              <div>
-                <h2>Memorias RAM</h2>
-                <select 
-                   className={`custom-select ${!selectedCpu ? 'error' : ''}`} 
-                  value={selectedRam}
-                  onChange={(e) => {
-                    const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
-                    setSelectedRam(e.target.value);
-                    setPrecioRam(selectedOption ? selectedOption.precio : 0);
-                  }}
-                >
-                     <option value="">Selecciona una Memoria RAM</option>
-                  {key.map((categoria, idx) => (
-                    categoria.tipo === "Memoria RAM" ? 
-                      <option key={idx} value={categoria.nombre}>
-                        {categoria.nombre} - ${categoria.precio}
-                      </option>
-                    : null
-                  ))}
-                </select>
+                      <h2>SSD</h2>
+                      <select
+                        className={`custom-select ${!selectedSsd ? 'error' : ''}`}
+                        value={selectedSsd}
+                        onChange={(e) => {
+                          const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
+                          setSelectedSsd(e.target.value);
+                          setPrecioSsd(selectedOption ? selectedOption.precio : 0);
+                        }}
+                      >
+                        <option value="">Selecciona un SSD</option>
+                        {key.map((categoria, idx) => (
+                          categoria.tipo === "SSD" ?
+                            <option key={idx} value={categoria.nombre}>
+                              {categoria.nombre} - ${categoria.precio}
+                            </option>
+                            : null
+                        ))}
+                      </select>
+                    </div>
 
-                <h2>Placas Madre</h2>
-                <select 
-                   className={`custom-select ${!selectedCpu ? 'error' : ''}`} 
-                  value={selectedPlaca}
-                  onChange={(e) => {
-                    const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
-                    setSelectedPlaca(e.target.value);
-                    setPrecioPlaca(selectedOption ? selectedOption.precio : 0);
-                  }}
-                >
-                     <option value="">Selecciona una Placa Base</option>
-                  {key.map((categoria, idx) => (
-                    categoria.tipo === "Placa Base" ? 
-                      <option key={idx} value={categoria.nombre}>
-                        {categoria.nombre} - ${categoria.precio}
-                      </option>
-                    : null
-                  ))}
-                </select>
-              </div>
+                    <div>
+                      <h2>Memorias RAM</h2>
+                      <select
+                        className={`custom-select ${!selectedRam ? 'error' : ''}`}
+                        value={selectedRam}
+                        onChange={(e) => {
+                          const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
+                          setSelectedRam(e.target.value);
+                          setPrecioRam(selectedOption ? selectedOption.precio : 0);
+                        }}
+                      >
+                        <option value="">Selecciona una Memoria RAM</option>
+                        {key.map((categoria, idx) => (
+                          categoria.tipo === "Memoria RAM" ?
+                            <option key={idx} value={categoria.nombre}>
+                              {categoria.nombre} - ${categoria.precio}
+                            </option>
+                            : null
+                        ))}
+                      </select>
 
-              <p>
-                Precio Total: ${precioTotal.toFixed(2)}
-              </p>
-              <button type="submit" className={`add-button ${animationClass}`}>
-                
-                {loading ? <img src={load} className='load_cesta' alt="loading" /> : 'Añadir a la Cesta'}
-              </button>
-            <button className='export-button' onClick={generatePDF}>Generar PDF</button>
-    
-            </form>
+                      <h2>Placas Madre</h2>
+                      <select
+                        className={`custom-select ${!selectedPlaca ? 'error' : ''}`}
+                        value={selectedPlaca}
+                        onChange={(e) => {
+                          const selectedOption = key.find(categoria => categoria.nombre === e.target.value);
+                          setSelectedPlaca(e.target.value);
+                          setPrecioPlaca(selectedOption ? selectedOption.precio : 0);
+                        }}
+                      >
+                        <option value="">Selecciona una Placa Base</option>
+                        {key.map((categoria, idx) => (
+                          categoria.tipo === "Placa Base" ?
+                            <option key={idx} value={categoria.nombre}>
+                              {categoria.nombre} - ${categoria.precio}
+                            </option>
+                            : null
+                        ))}
+                      </select>
+                    </div>
 
-            
-          </div>
-        ))}
-      </div>
-      <div className='options__container'>
-        <button onClick={() => selectOptionByPrice('low')} className='price-button'>Opción Bajo Precio</button>
-        <button onClick={() => selectOptionByPrice('medium')}  className='price-button'>Opción Precio Medio</button>
-        <button onClick={() => selectOptionByPrice('high')}  className='price-button'>Opción Alto Precio</button>
-      </div>
-    </main>
-    )
-  }
+                    <p>
+                      Precio Total: ${precioTotal.toFixed(2)}
+                    </p>
+                    <button type="submit" className={`add-button ${animationClass}`}>
+
+                      {loading ? <img src={load} className='load_cesta' alt="loading" /> : 'Añadir a la Cesta'}
+                    </button>
+                    <button className='export-button' onClick={generatePDF}>Generar PDF</button>
+
+                  </form>
 
 
-    <Alert
-      type={alert.type}
-      message={alert.message}
-      statusAlert={estadoAlerta}
-      changeAlert={changeAlertStatus}
+                </div>
+              ))}
+            </div>
+            <div className='options__container'>
+              <button onClick={() => selectOptionByPrice('low')} className='price-button'>Opción Bajo Precio</button>
+              <button onClick={() => selectOptionByPrice('medium')} className='price-button'>Opción Precio Medio</button>
+              <button onClick={() => selectOptionByPrice('high')} className='price-button'>Opción Alto Precio</button>
+            </div>
+          </main>
+        )
+      }
+
+
+      <Alert
+        type={alert.type}
+        message={alert.message}
+        statusAlert={estadoAlerta}
+        changeAlert={changeAlertStatus}
       />
-      <Footer/>
+      <Footer />
     </>
   );
 };

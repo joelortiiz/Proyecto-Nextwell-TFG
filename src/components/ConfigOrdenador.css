@@ -11,7 +11,9 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+  .custom-select.error {
+    border: 1px solid red;
+  }
   .export-button:hover {
     background-color: #0058b5;
   }

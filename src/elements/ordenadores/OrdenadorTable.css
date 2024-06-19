@@ -1,3 +1,52 @@
+
+/* ConfirmModal.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: rgb(79, 79, 79);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.modal-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.modal-buttons button:last-child {
+  background-color: #dc3545;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #c82333;
+}
+
 .ordenador-table {
   width: 100%;
   border-collapse: collapse;

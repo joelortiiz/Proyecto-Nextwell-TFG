@@ -85,7 +85,8 @@ export const Ordenador = () => {
           </article>
         </section>
       </div>
-        <div className="ordenador-container"> 
+      <div className='ccc'>
+      <div className="ordenador-container"> 
             <h2>Editar Ordenador</h2>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -134,6 +135,8 @@ export const Ordenador = () => {
                 </div>
             )}
         </div>
+      </div>
+      
         <Footer/>
         </>
     );

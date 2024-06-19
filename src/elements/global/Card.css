@@ -12,7 +12,43 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+    gap: 1rem; /* Espacio entre las tarjetas */
+  }
+  
+ 
+  .clientcard {
+    width: 100%; /* Ancho completo por defecto */
+    max-width: 300px; /* Ancho máximo para las tarjetas */
+    margin: 0.5rem; /* Margen para cada tarjeta */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto de tarjeta */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Oculta el contenido que se desborda */
+    transition: transform 0.3s ease; /* Transición suave */
+  }
+  
+  .clientcard:hover {
+    transform: scale(1.05); 
+  }
+  
+   @media (min-width: 768px) {
+    .card {
+      width: calc(50% - 1rem); 
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .card {
+      width: calc(33.333% - 1rem); 
+    }
+  }
+  
+  @media (min-width: 1440px) {
+    .card {
+      width: calc(25% - 1rem); 
+    }
+  }
+  
 .clientcard {
     margin: 1rem;
     background: #fff;
